@@ -1,0 +1,6 @@
+a0f1eb,127.0.0.1,GET,http://verygoodtrip/,1456416885,,200
+ce5f16,127.0.0.1,GET,http://verygoodtrip/favicon.ico,1456416885,,404
+7a2266,127.0.0.1,GET,http://verygoodtrip/,1456416905,,200
+09aa5a,127.0.0.1,GET,http://verygoodtrip/login,1456416906,,200
+f37893,127.0.0.1,POST,http://verygoodtrip/login_check,1456416915,,302
+ac5609,127.0.0.1,GET,http://verygoodtrip/,1456416915,,200

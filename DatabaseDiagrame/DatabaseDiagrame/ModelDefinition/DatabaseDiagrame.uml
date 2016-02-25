@@ -60,8 +60,8 @@
             aggregation="None"
             isComposite="false" />
           <property
-            Id="5237b448-426b-4473-a9f0-56bf8c8bd0cd"
-            name="trip_genre"
+            Id="19768d1a-63ba-4210-8263-97f66c75e86e"
+            name="trip_category"
             isLeaf="false"
             isStatic="false"
             isReadOnly="false"
@@ -71,8 +71,19 @@
             aggregation="None"
             isComposite="false" />
           <property
-            Id="19768d1a-63ba-4210-8263-97f66c75e86e"
-            name="trip_category"
+            Id="391e96bd-2867-4fa4-a6c8-fe04a77eac14"
+            name="trip_name"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isUnique="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false" />
+          <property
+            Id="050d0a5c-d0ff-4009-a3da-33d0142226e9"
+            name="trip_image"
             isLeaf="false"
             isStatic="false"
             isReadOnly="false"
@@ -94,10 +105,11 @@
         <ownedAttributesInternal>
           <property
             Id="b5e63b31-e77e-4b37-976e-47076f03bd71"
-            name="user_email"
+            name="email"
             isLeaf="false"
             isStatic="false"
             isReadOnly="false"
+            isUnique="false"
             isDerived="false"
             isDerivedUnion="false"
             aggregation="None"
@@ -163,6 +175,61 @@
                 LastKnownLocation="DatabaseDiagrame.uml" />
             </type_NamedElement>
           </property>
+          <property
+            Id="68003326-372d-4c73-8dc1-f26d5ead4708"
+            name="lastname"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isUnique="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false" />
+          <property
+            Id="e45230f2-f65f-4715-8159-746330219704"
+            name="adresse"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isUnique="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false" />
+          <property
+            Id="5dd7711a-b4c6-4f49-9a87-2c69f3ada528"
+            name="town"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isUnique="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false" />
+          <property
+            Id="23e28cba-5132-42a8-aadd-b09fa8f353f2"
+            name="zipcode"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isUnique="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false" />
+          <property
+            Id="5440fa52-5824-4671-9cf7-b9380d5d573e"
+            name="firstname"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isUnique="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false" />
         </ownedAttributesInternal>
       </class>
     </packageHasNamedElement>

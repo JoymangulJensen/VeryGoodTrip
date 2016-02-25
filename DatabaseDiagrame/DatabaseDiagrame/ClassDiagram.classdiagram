@@ -28,11 +28,14 @@
           <property Id="889f6d20-cbb8-4f61-8e64-39ba1114b933" name="trip_description" isLeaf="false" isStatic="false" isReadOnly="false" isUnique="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
             <elementDefinition Id="7f3c4abf-37b9-4ad7-a0a2-6c7261859d06" />
           </property>
-          <property Id="af5b6af9-51f9-40a3-834a-fc523110b684" name="trip_genre" isLeaf="false" isStatic="false" isReadOnly="false" isUnique="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
-            <elementDefinition Id="5237b448-426b-4473-a9f0-56bf8c8bd0cd" />
-          </property>
           <property Id="12e6213a-986b-4379-8c6a-8313290c677e" name="trip_category" isLeaf="false" isStatic="false" isReadOnly="false" isUnique="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
             <elementDefinition Id="19768d1a-63ba-4210-8263-97f66c75e86e" />
+          </property>
+          <property Id="f55ae7ac-f8f3-4934-991f-6afc557475f9" name="trip_name" isLeaf="false" isStatic="false" isReadOnly="false" isUnique="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+            <elementDefinition Id="391e96bd-2867-4fa4-a6c8-fe04a77eac14" />
+          </property>
+          <property Id="0ae2d4b8-37b3-47b3-b4aa-462a13d5d5a4" name="trip_image" isLeaf="false" isStatic="false" isReadOnly="false" isUnique="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+            <elementDefinition Id="050d0a5c-d0ff-4009-a3da-33d0142226e9" />
           </property>
         </ownedAttributesInternal>
       </class>
@@ -41,10 +44,10 @@
       <class Id="073119bb-2201-4129-bde3-53ebd6b61756" name="User" isAbstract="false" isLeaf="false" isActiveClass="false">
         <elementDefinition Id="d176ff92-14f7-4496-a625-bb5a635633d3" />
         <ownedAttributesInternal>
-          <property Id="e9f54bcd-e794-4341-9a6d-c33cb8a264ae" name="user_email" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+          <property Id="e9f54bcd-e794-4341-9a6d-c33cb8a264ae" name="email" isLeaf="false" isStatic="false" isReadOnly="false" isUnique="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
             <elementDefinition Id="b5e63b31-e77e-4b37-976e-47076f03bd71" />
             <type_NamedElement>
-              <referencedTypeMoniker Id="c3d350f8-24ac-4fc1-8b8d-c28b3c49d36d" LastKnownName="String" />
+              <referencedTypeMoniker Id="8e7d5900-d472-4bfe-9579-d6e7ce38faea" LastKnownName="String" />
             </type_NamedElement>
           </property>
           <property Id="e24cf597-2dd4-41be-9441-a152faa5c212" name="password" isLeaf="false" isStatic="false" isReadOnly="false" isUnique="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
@@ -65,14 +68,24 @@
               <referencedTypeMoniker Id="846f24a0-3a52-4501-a264-ff8efd86eb91" LastKnownName="String" />
             </type_NamedElement>
           </property>
+          <property Id="676a35f2-8feb-4de7-b841-ab4fc1d17348" name="lastname" isLeaf="false" isStatic="false" isReadOnly="false" isUnique="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+            <elementDefinition Id="68003326-372d-4c73-8dc1-f26d5ead4708" />
+          </property>
+          <property Id="b83506b8-6089-4966-9390-cf896efa8879" name="adresse" isLeaf="false" isStatic="false" isReadOnly="false" isUnique="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+            <elementDefinition Id="e45230f2-f65f-4715-8159-746330219704" />
+          </property>
+          <property Id="08456aa7-cf2a-4269-982a-a417d698b09c" name="town" isLeaf="false" isStatic="false" isReadOnly="false" isUnique="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+            <elementDefinition Id="5dd7711a-b4c6-4f49-9a87-2c69f3ada528" />
+          </property>
+          <property Id="9b9d1400-161e-43e0-a201-5c1a64452415" name="zipcode" isLeaf="false" isStatic="false" isReadOnly="false" isUnique="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+            <elementDefinition Id="23e28cba-5132-42a8-aadd-b09fa8f353f2" />
+          </property>
+          <property Id="1347fa4a-b539-403b-a652-27e4384a364c" name="firstname" isLeaf="false" isStatic="false" isReadOnly="false" isUnique="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+            <elementDefinition Id="5440fa52-5824-4671-9cf7-b9380d5d573e" />
+          </property>
         </ownedAttributesInternal>
       </class>
     </logicalClassDesignerModelHasTypes>
-    <packageHasNamedElement>
-      <referencedType Id="c3d350f8-24ac-4fc1-8b8d-c28b3c49d36d" name="String" isAbstract="false" isLeaf="false" cachedFullName="String">
-        <elementDefinition Id="59259974-6d55-42c6-b7bd-763d77ac8ef9" />
-      </referencedType>
-    </packageHasNamedElement>
     <packageHasNamedElement>
       <referencedType Id="525fb2e6-8df0-43d7-9fbb-34d7e5124bf3" name="String" isAbstract="false" isLeaf="false" cachedFullName="String">
         <elementDefinition Id="59259974-6d55-42c6-b7bd-763d77ac8ef9" />
@@ -248,6 +261,11 @@
         </ownedAttributesInternal>
       </class>
     </logicalClassDesignerModelHasTypes>
+    <packageHasNamedElement>
+      <referencedType Id="8e7d5900-d472-4bfe-9579-d6e7ce38faea" name="String" isAbstract="false" isLeaf="false" cachedFullName="String">
+        <elementDefinition Id="59259974-6d55-42c6-b7bd-763d77ac8ef9" />
+      </referencedType>
+    </packageHasNamedElement>
   </packagedElements>
   <package Id="fadd5920-5b3b-4ec2-a010-936305495cb0" name="DatabaseDiagrame">
     <elementDefinition Id="85312780-11f8-4334-8d3d-efe9320d38c3" />

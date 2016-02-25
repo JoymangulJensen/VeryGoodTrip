@@ -1,8 +1,9 @@
 <?php
 
 // Home page
-$app->get('/', "MicroCMS\Controller\HomeController::indexAction")->bind('home');
+$app->get('/', "VeryGoodTrip\Controller\HomeController::indexAction")->bind('home');
 
+/*
 // Detailed info about an article
 $app->match('/article/{id}', "MicroCMS\Controller\HomeController::articleAction")->bind('article');
 
@@ -47,3 +48,4 @@ $app->post('/api/article', "MicroCMS\Controller\ApiController::addArticleAction"
 
 // API : remove an article
 $app->delete('/api/article/{id}', "MicroCMS\Controller\ApiController::deleteArticleAction")->bind('api_article_delete');
+*/

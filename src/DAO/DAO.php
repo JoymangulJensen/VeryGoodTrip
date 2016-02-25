@@ -1,12 +1,7 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: seljo
- * Date: 09/02/2016
- * Time: 13:46
- */
 
-namespace MicroCMS\DAO;
+
+namespace VeryGoodTrip\DAO;
 
 use Doctrine\DBAL\Connection;
 
@@ -14,14 +9,12 @@ abstract class DAO
 {
     /**
      * Database connection
-     *
      * @var \Doctrine\DBAL\Connection
      */
     private $db;
 
     /**
      * Constructor
-     *
      * @param \Doctrine\DBAL\Connection The database connection object
      */
     public function __construct(Connection $db) {
@@ -30,7 +23,6 @@ abstract class DAO
 
     /**
      * Grants access to the database connection object
-     *
      * @return \Doctrine\DBAL\Connection The database connection object
      */
     protected function getDb() {

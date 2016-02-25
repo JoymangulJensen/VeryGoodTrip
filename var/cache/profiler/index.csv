@@ -4,3 +4,14 @@ ce5f16,127.0.0.1,GET,http://verygoodtrip/favicon.ico,1456416885,,404
 09aa5a,127.0.0.1,GET,http://verygoodtrip/login,1456416906,,200
 f37893,127.0.0.1,POST,http://verygoodtrip/login_check,1456416915,,302
 ac5609,127.0.0.1,GET,http://verygoodtrip/,1456416915,,200
+517a05,,GET,http://:/,1456420080,,500
+9fe9ad,,GET,http://:/,1456420090,,500
+32b820,,GET,http://:/,1456420097,,500
+c7eec2,,GET,http://:/,1456420113,,500
+844b0b,127.0.0.1,GET,http://localhost:63342/VeryGoodTrip/web/index.php/,1456420126,,500
+f63855,127.0.0.1,GET,http://localhost:63342/VeryGoodTrip/web/index.php/,1456420187,,500
+6bba5c,127.0.0.1,GET,http://verygoodtrip/,1456420229,,500
+b9f4a6,127.0.0.1,GET,http://verygoodtrip/,1456420232,,500
+47efb5,127.0.0.1,GET,http://verygoodtrip/,1456420235,,500
+846243,127.0.0.1,GET,http://verygoodtrip/login,1456420236,,200
+7caf77,127.0.0.1,GET,http://verygoodtrip/,1456420241,,500

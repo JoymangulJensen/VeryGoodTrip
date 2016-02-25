@@ -1,6 +1,6 @@
 <?php
 
-namespace MicroCMS\Controller;
+namespace VeryGoodTrip\Controller;
 
 use Silex\Application;
 use Symfony\Component\HttpFoundation\Request;

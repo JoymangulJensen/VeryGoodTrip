@@ -3,10 +3,13 @@
 {% block title %}Home{% endblock %}
 
 {% block content %}
-    {% for article in articles %}
+    {% for trip in trips %}
         <article>
-            <h2><a class="articleTitle" href="{{ path('article', { 'id': article.id }) }}">{{ article.title }}</a></h2>
-            <p>{{ article.content }}</p>
+            <h2><a class="articleTitle" href="#">{{ trip.name }}</a></h2>
+            <p>{{ trip.description }}</p>
+            <p>{{ trip.price }}</p>
+            <p>{{ trip.category }}</p>
+            <p>{{ trip.image }}</p>
         </article>
     {% endfor %}
 {% endblock %}

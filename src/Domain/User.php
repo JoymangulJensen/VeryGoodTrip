@@ -1,56 +1,100 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: seljo
- * Date: 09/02/2016
- * Time: 17:25
- */
 
-namespace MicroCMS\Domain;
+
+namespace VeryGoodTrip\Domain;
 
 use Symfony\Component\Security\Core\User\UserInterface;
 
 class User implements UserInterface
 {
-    private $id;
-    private $username;
+    /**
+     * User email
+     * @var string
+     */
+    private $email;
+    /**
+     * User last name
+     * @var string
+     */
+    private $lastname;
+    /**
+     * User first name
+     * @var string
+     */
+    private $firstname;
+    /**
+     * User password
+     * @var string
+     */
     private $password;
+    /**
+     * Salt used to encode password
+     * @var string
+     */
     private $salt;
+    /**
+     * User address
+     * @var string
+     */
+    private $address;
+    /**
+     * User town
+     * @var string
+     */
+    private $town;
+    /**
+     * User zipCode
+     * @var integer
+     */
+    private $zipcode;
+    /**
+     * User role
+     * Values : ROLE_USER or ROLE_ADMIN.
+     * @var string
+     */
     private $role;
 
-    public function getId() {
-        return $this->id;
+
+
+    /*************************************************************
+     *************       Getters and setters         *************
+     *************************************************************/
+
+    public function getEmail()
+    {
+        return $this->email;
     }
 
-    public function setId($id) {
-        $this->id = $id;
+    public function setEmail($email)
+    {
+        $this->email = $email;
     }
 
-    /**
-     * @inheritDoc
-     */
-    public function getUsername() {
-        return $this->username;
+    public function getLastname()
+    {
+        return $this->lastname;
     }
 
-    public function setUsername($username) {
-        $this->username = $username;
+    public function setLastname($lastname)
+    {
+        $this->lastname = $lastname;
     }
 
-    /**
-     * @inheritDoc
-     */
-    public function getPassword() {
-        return $this->password;
+    public function getFirstname()
+    {
+        return $this->firstname;
     }
 
-    public function setPassword($password) {
+    public function setFirstname($firstname)
+    {
+        $this->firstname = $firstname;
+    }
+
+    public function setPassword($password)
+    {
         $this->password = $password;
     }
 
-    /**
-     * @inheritDoc
-     */
     public function getSalt()
     {
         return $this->salt;
@@ -61,14 +105,49 @@ class User implements UserInterface
         $this->salt = $salt;
     }
 
+    public function getAddress()
+    {
+        return $this->address;
+    }
+
+    public function setAddress($address)
+    {
+        $this->address = $address;
+    }
+
+    public function getTown()
+    {
+        return $this->town;
+    }
+
+    public function setTown($town)
+    {
+        $this->town = $town;
+    }
+
+    public function getZipcode()
+    {
+        return $this->zipcode;
+    }
+
+    public function setZipcode($zipcode)
+    {
+        $this->zipcode = $zipcode;
+    }
+
     public function getRole()
     {
         return $this->role;
     }
 
-    public function setRole($role) {
+    public function setRole($role)
+    {
         $this->role = $role;
     }
+
+    /*************************************************************
+     **************       Implement Methods         **************
+     *************************************************************/
 
     /**
      * @inheritDoc
@@ -81,8 +160,27 @@ class User implements UserInterface
     /**
      * @inheritDoc
      */
-    public function eraseCredentials() {
-        // Nothing to do here
+    public function getUsername()
+    {
+        return $this->getEmail();
     }
+
+    /**
+     * @inheritDoc
+     */
+    public function getPassword()
+    {
+        return $this->password;
+    }
+
+
+    /**
+     * @inheritDoc
+     */
+    public function eraseCredentials()
+    {
+        // TODO: Implement eraseCredentials() method.
+    }
+
 
 }

@@ -11,14 +11,14 @@
                 <p class="lead">Catégorie</p>
                 <div class="list-group">
                     {% for category,count in categories %}
-                        <a href="#" class="list-group-item">{{ category }}({{ count }})</a>
+                        <a href="#" class="list-group-item">{{ category }} ({{ count }})</a>
                     {% endfor %}
                 </div>
             </div>
 
             <div class="col-md-9">
                 {% for trip in trips %}
-                    <p class="lead"><a class="articleTitle" href="#">{{ trip.name }}</a></p>
+                    <p class="lead"><a class="articleTitle" href="{{ path('trip', { 'id': trip.id }) }}">{{ trip.name }}</a></p>
                     <p>{{ trip.description }}</p>
                     <p>{{ trip.price }}</p>
                     <p>{{ trip.category }}</p>

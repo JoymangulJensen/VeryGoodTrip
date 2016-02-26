@@ -41,6 +41,10 @@ class TripDAO extends DAO
         return $trip;
     }
 
+    /**
+     * Generate a list of all categories
+     * @return string[] An array of string objects
+     */
     public function getAllCategories()
     {
         $sql = "select trip_category from trip order by trip_category asc";
@@ -54,6 +58,11 @@ class TripDAO extends DAO
         return $categories;
     }
 
+    /**
+     * Calculate the number of trips with a specific category
+     * @param string $category category of trip
+     * @return integer
+     */
     public function amountTripsByCategory($category)
     {
         $sql = "select count(*) from trip where trip_category=?";
@@ -63,4 +72,20 @@ class TripDAO extends DAO
         }
         return $count;
     }
+
+    /**
+     * Returns a trip matching the supplied id.
+     * @param integer $id
+     * @return \VeryGoodTrip\Domain\Trip |throws an exception if no matching trip is found
+     */
+    public function find($id) {
+        $sql = "select * from trip where trip_id=?";
+        $row = $this->getDb()->fetchAssoc($sql, array($id));
+
+        if ($row)
+            return $this->buildDomainObject($row);
+        else
+            throw new \Exception("No trip matching id " . $id);
+    }
+
 }

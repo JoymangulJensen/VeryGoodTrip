@@ -3,9 +3,10 @@
 // Home page
 $app->get('/', "VeryGoodTrip\Controller\HomeController::indexAction")->bind('home');
 
+// Detailed info about a trip
+$app->match('/trip/{id}', "VeryGoodTrip\Controller\HomeController::tripAction")->bind('trip');
+
 /*
-// Detailed info about an article
-$app->match('/article/{id}', "MicroCMS\Controller\HomeController::articleAction")->bind('article');
 
 // Login form
 $app->get('/login', "MicroCMS\Controller\HomeController::loginAction")->bind('login');

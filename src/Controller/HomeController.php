@@ -24,15 +24,14 @@ class HomeController {
 
 
     /**
-     * Article details controller.
-     *
-     * @param integer $id Article id
+     * Trip details controller
+     * @param integer $id Trip id
      * @param Request $request Incoming request
      * @param Application $app Silex application
      */
-    public function articleAction($id, Request $request, Application $app) {
-        $article = $app['dao.article']->find($id);
-        $commentFormView = null;
+    public function tripAction($id, Request $request, Application $app) {
+        $trip = $app['dao.trip']->find($id);
+        /*$commentFormView = null;
         if ($app['security.authorization_checker']->isGranted('IS_AUTHENTICATED_FULLY')) {
             // A user is fully authenticated : he can add comments
             $comment = new Comment();
@@ -47,11 +46,10 @@ class HomeController {
             }
             $commentFormView = $commentForm->createView();
         }
-        $comments = $app['dao.comment']->findAllByArticle($id);
-        return $app['twig']->render('article.html.twig', array(
-            'article' => $article,
-            'comments' => $comments,
-            'commentForm' => $commentFormView));
+        */
+
+        /*$comments = $app['dao.comment']->findAllByArticle($id);*/
+        return $app['twig']->render('trip.html.twig', array('trip' => $trip));
     }
 
     /**

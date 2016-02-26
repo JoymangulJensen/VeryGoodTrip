@@ -1,0 +1,26 @@
+{% extends "layout.html.twig" %}
+
+{% block title %}{{ trip.name }}{% endblock %}
+
+{% block content %}
+
+    <div class="card hovercard">
+        <div class="card-background">
+            <img class="card-bkimg" src="{{ app.request.basepath }}/{{ trip.image }}" alt="">
+        </div>
+        <div class="useravatar">
+            <img src="{{ app.request.basepath }}/{{ trip.image }}" alt="Smiley face" id="trip_img">
+        </div>
+        <div class="card-info"> <span class="card-title">{{ trip.name }}</span>
+
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-8 col-md-offset-2">
+            <h3 class="pull-right">{{ trip.price }} €</h3>
+            <h3>{{ trip.name }}</h3>
+            <p>{{ trip.description }}</p>
+            <p>{{ trip.category }}</p>
+        </div>
+    </div>
+{% endblock %}

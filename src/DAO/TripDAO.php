@@ -43,7 +43,24 @@ class TripDAO extends DAO
 
     public function getAllCategories()
     {
-        $sql = "select trip_category from trip order by trip_category desc";
+        $sql = "select trip_category from trip order by trip_category asc";
+        $result = $this->getDb()->fetchAll($sql);
+        //Storing the different categories from the query result in an string array
+        $categories = array();
+        foreach ($result as $row) {
+            $category= $row['trip_category'];
+            $categories[$category] = $this->amountTripsByCategory($category);
+        }
+        return $categories;
+    }
 
+    public function amountTripsByCategory($category)
+    {
+        $sql = "select count(*) from trip where trip_category=?";
+        $result = $this->getDb()->fetchAll($sql,array($category));
+        foreach ($result as $row) {
+            $count= $row['count(*)'];
+        }
+        return $count;
     }
 }

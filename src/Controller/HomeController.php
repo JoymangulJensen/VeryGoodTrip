@@ -16,7 +16,10 @@ class HomeController {
      */
     public function indexAction(Application $app) {
         $trips = $app['dao.trip']->findAll();
-        return $app['twig']->render('index.html.twig', array('trips' => $trips));
+        $categories = $app['dao.trip']->getAllCategories();
+        return $app['twig']->render('index.html.twig', array(
+                                                        'trips' => $trips,
+                                                        'categories' => $categories));
     }
 
 

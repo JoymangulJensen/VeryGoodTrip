@@ -3,13 +3,29 @@
 {% block title %}Home{% endblock %}
 
 {% block content %}
-    {% for trip in trips %}
-        <article>
-            <h2><a class="articleTitle" href="#">{{ trip.name }}</a></h2>
-            <p>{{ trip.description }}</p>
-            <p>{{ trip.price }}</p>
-            <p>{{ trip.category }}</p>
-            <p>{{ trip.image }}</p>
-        </article>
-    {% endfor %}
+    <div class="container">
+
+        <div class="row">
+
+            <div class="col-md-3">
+                <p class="lead">Catégorie</p>
+                <div class="list-group">
+                    {% for category,count in categories %}
+                        <a href="#" class="list-group-item">{{ category }}({{ count }})</a>
+                    {% endfor %}
+                </div>
+            </div>
+
+            <div class="col-md-9">
+                {% for trip in trips %}
+                    <p class="lead"><a class="articleTitle" href="#">{{ trip.name }}</a></p>
+                    <p>{{ trip.description }}</p>
+                    <p>{{ trip.price }}</p>
+                    <p>{{ trip.category }}</p>
+                    <p>{{ trip.image }}</p>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+    <!-- /.container -->
 {% endblock %}

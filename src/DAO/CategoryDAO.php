@@ -50,8 +50,8 @@ class CategoryDAO
      * Returns a Category matching the supplied id.
      *
      * @param integer $id
-     *
-     * @return \VeryGoodTrip\Domain\Category|throws an exception if no matching category is found
+     * @return Category the category matching the supplied id
+     * @throws|Category an exception if no matching category is found
      */
     public function find($id) {
         $sql = "select * from category where category_id=?";
@@ -59,6 +59,22 @@ class CategoryDAO
 
         if ($row)
             return $this->buildDomainObject($row);
+        else
+            throw new \Exception("No category matching id " . $id);
+    }
+
+    /**
+     * Returns the number of trips of the supplied category id
+     *
+     * @param integer $id the id of the category
+     * @return integer the number of trips for the category supplied
+     * @throws|Category an exception if no matching category is found
+     */
+    public function countTripsByCategory($id) {
+        $sql = "select count(*) as nb_trips from trip where category_id = ?";
+        $row = $this->getDb()->fetchAssoc($sql, array($id));
+        if ($row)
+            return $row->fetchColumn();
         else
             throw new \Exception("No category matching id " . $id);
     }

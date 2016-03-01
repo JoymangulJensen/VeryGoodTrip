@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Client :  localhost
--- Généré le :  Mar 01 Mars 2016 à 16:30
+-- Généré le :  Mar 01 Mars 2016 à 16:52
 -- Version du serveur :  5.6.17
 -- Version de PHP :  5.5.12
 
@@ -19,6 +19,8 @@ SET time_zone = "+00:00";
 --
 -- Base de données :  `verygoodtrip`
 --
+CREATE DATABASE IF NOT EXISTS `verygoodtrip` DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci;
+USE `verygoodtrip`;
 
 -- --------------------------------------------------------
 

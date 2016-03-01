@@ -1,4 +1,3 @@
-create database if not exists verygoodtrip character set utf8 collate utf8_unicode_ci;
-use verygoodtrip;
+GRANT USAGE ON *.* TO 'vgt_user'@'localhost' IDENTIFIED BY PASSWORD '*14E65567ABDB5135D0CFD9A70B3032C179A49EE7';
 
-grant all privileges on verygoodtrip.* to 'verygoodtrip_user'@'localhost' identified by 'secret';
+GRANT ALL PRIVILEGES ON `verygoodtrip`.* TO 'vgt_user'@'localhost';

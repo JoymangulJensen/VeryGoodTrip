@@ -2,43 +2,34 @@
 
 namespace VeryGoodTrip\Domain;
 
-class Trip
+
+class Category
 {
     /**
-     * Trip ID
+     * Category ID
      * @var integer
      */
     private $id;
     /**
-     * Trip name
-     * @var String
+     * Category name
+     * @var string
      */
     private $name;
     /**
-     * Trip description
-     * @var String
+     * Category description
+     * @var string
      */
     private $description;
     /**
-     * Trip price
-     * @var integer
-     */
-    private $price;
-    /**
-     * Trip category
-     * @var \VeryGoodTrip\Domain\Category
-     */
-    private $category;
-    /**
-     * Path to Trip image
-     * @var String
+     * Category image path
+     * @var string
      */
     private $image;
+
 
     /*************************************************************
      *************       Getters and setters         *************
      *************************************************************/
-
     /**
      * @return int
      */
@@ -56,7 +47,7 @@ class Trip
     }
 
     /**
-     * @return String
+     * @return string
      */
     public function getName()
     {
@@ -64,7 +55,7 @@ class Trip
     }
 
     /**
-     * @param String $name
+     * @param string $name
      */
     public function setName($name)
     {
@@ -72,7 +63,7 @@ class Trip
     }
 
     /**
-     * @return String
+     * @return string
      */
     public function getDescription()
     {
@@ -80,7 +71,7 @@ class Trip
     }
 
     /**
-     * @param String $description
+     * @param string $description
      */
     public function setDescription($description)
     {
@@ -88,39 +79,7 @@ class Trip
     }
 
     /**
-     * @return int
-     */
-    public function getPrice()
-    {
-        return $this->price;
-    }
-
-    /**
-     * @param int $price
-     */
-    public function setPrice($price)
-    {
-        $this->price = $price;
-    }
-
-    /**
-     * @return Category
-     */
-    public function getCategory()
-    {
-        return $this->category;
-    }
-
-    /**
-     * @param Category $category
-     */
-    public function setCategory($category)
-    {
-        $this->category = $category;
-    }
-
-    /**
-     * @return String
+     * @return string
      */
     public function getImage()
     {
@@ -128,14 +87,11 @@ class Trip
     }
 
     /**
-     * @param String $image
+     * @param string $image
      */
     public function setImage($image)
     {
         $this->image = $image;
     }
-
-
-
 
 }

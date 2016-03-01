@@ -25,6 +25,58 @@
         isAbstract="false"
         isLeaf="false"
         isActiveClass="false">
+        <targetEnds>
+          <association
+            Id="e71a0818-0261-4794-b1c4-60197f01a9de"
+            isDerived="false"
+            sourceEndRoleName=""
+            targetEndRoleName=""
+            isLeaf="false"
+            isAbstract="false">
+            <classMoniker
+              Id="75878d17-62c0-4c29-ab4a-38e0b7731841"
+              LastKnownName="Catégory"
+              LastKnownLocation="DatabaseDiagrame.uml" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="744b1d2e-ca56-45c6-9e78-23fd08302717"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false"
+                  isNavigableOwned="false">
+                  <lowerValueInternal>
+                    <literalString
+                      Id="453e31e6-a8d3-4217-967a-4357cd7f5a1a"
+                      name="Lower"
+                      value="0" />
+                  </lowerValueInternal>
+                  <upperValueInternal>
+                    <literalString
+                      Id="df0c384f-b091-43ad-b67e-2ba945b35377"
+                      name="Upper"
+                      value="n" />
+                  </upperValueInternal>
+                </memberEnd>
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="d20fd68d-b26a-42d3-a452-34a24d0659df"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false" />
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+          </association>
+        </targetEnds>
         <ownedAttributesInternal>
           <property
             Id="ac46a5bd-5298-4779-8ec7-95cd4442047d"
@@ -51,17 +103,6 @@
           <property
             Id="7f3c4abf-37b9-4ad7-a0a2-6c7261859d06"
             name="trip_description"
-            isLeaf="false"
-            isStatic="false"
-            isReadOnly="false"
-            isUnique="false"
-            isDerived="false"
-            isDerivedUnion="false"
-            aggregation="None"
-            isComposite="false" />
-          <property
-            Id="19768d1a-63ba-4210-8263-97f66c75e86e"
-            name="trip_category"
             isLeaf="false"
             isStatic="false"
             isReadOnly="false"
@@ -519,6 +560,61 @@
           <property
             Id="f506883e-29bf-4cdc-b488-384cb7e28da8"
             name="review_rating"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isUnique="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false" />
+        </ownedAttributesInternal>
+      </class>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <class
+        Id="75878d17-62c0-4c29-ab4a-38e0b7731841"
+        name="Catégory"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false">
+        <ownedAttributesInternal>
+          <property
+            Id="4f760dd1-989c-469a-b785-057315047038"
+            name="category_id"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isUnique="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false" />
+          <property
+            Id="4589fed7-8492-4d03-b82f-23fd77e585ff"
+            name="category_desc"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isUnique="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false" />
+          <property
+            Id="1f779bab-d0e9-4802-8f79-8d3d1b252619"
+            name="category_image"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isUnique="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false" />
+          <property
+            Id="fc339b0b-3827-4a8b-9453-e4b46580ef66"
+            name="category_name"
             isLeaf="false"
             isStatic="false"
             isReadOnly="false"

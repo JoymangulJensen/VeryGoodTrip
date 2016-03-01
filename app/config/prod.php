@@ -7,7 +7,7 @@ $app['db.options'] = array(
     'host'     => 'localhost',
     'port'     => '3306',
     'dbname'   => 'verygoodtrip',
-    'user'     => 'verygoodtrip_user',
+    'user'     => 'vgt_user',
     'password' => 'secret',
 );
 

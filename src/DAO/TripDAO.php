@@ -12,6 +12,14 @@ class TripDAO extends DAO
     private $categoryDAO;
 
     /**
+     * Set the categoryDAO object
+     * @param CategoryDAO $categoryDAO
+     */
+    public function setCategoryDAO(CategoryDAO $categoryDAO) {
+        $this->categoryDAO = $categoryDAO;
+    }
+
+    /**
      * Returns a list of all trips sorted by date(most recent first)
      * @return trips[] An array of \VeryGoodTrip\Domain\Trip
      */
@@ -32,7 +40,8 @@ class TripDAO extends DAO
     /**
      * Returns a trip matching the supplied id.
      * @param integer $id
-     * @return \VeryGoodTrip\Domain\Trip |throws an exception if no matching trip is found
+     * @return Trip
+     * @throws \Exception
      */
     public function find($id) {
 
@@ -48,7 +57,7 @@ class TripDAO extends DAO
     /**
      * Creates a trip object based on a DB row.
      *
-     * @param array : $row The DB row containing Article data.
+     * @param array : $row The DB row containing Trip data.
      * @return \VeryGoodTrip\Domain\Trip
      */
     protected function buildDomainObject($row) {

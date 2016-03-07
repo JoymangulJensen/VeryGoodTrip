@@ -10,7 +10,7 @@ namespace VeryGoodTrip\DAO;
 
 use VeryGoodTrip\Domain\Category;
 
-class CategoryDAO
+class CategoryDAO extends DAO
 {
     /**
      * Return a list of all Categories, sorted by date (most recent first).
@@ -18,7 +18,7 @@ class CategoryDAO
      * @return array C list of all categories.
      */
     public function findAll() {
-        $sql = "select * from category order by art_id desc";
+        $sql = "select * from category order by category_id desc";
         $result = $this->getDb()->fetchAll($sql);
 
         // Convert query result to an array of domain objects

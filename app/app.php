@@ -25,8 +25,14 @@ $app->register(new Silex\Provider\TranslationServiceProvider());
 $app->register(new Silex\Provider\ServiceControllerServiceProvider());
 
 // Register services
+$app['dao.category'] = $app->share(function ($app) {
+   return new VeryGoodTrip\DAO\CategoryDAO($app['db']);
+});
+
 $app['dao.trip'] = $app->share(function ($app) {
-    return new VeryGoodTrip\DAO\TripDAO($app['db']);
+    $tripDAO = new VeryGoodTrip\DAO\TripDAO($app['db']);
+    $tripDAO->setCategoryDAO($app['dao.category']);
+    return $tripDAO;
 });
 
 

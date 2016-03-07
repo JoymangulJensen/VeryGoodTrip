@@ -4,8 +4,6 @@ namespace VeryGoodTrip\Controller;
 
 use Silex\Application;
 use Symfony\Component\HttpFoundation\Request;
-use MicroCMS\Domain\Comment;
-use MicroCMS\Form\Type\CommentType;
 
 class HomeController {
 
@@ -16,7 +14,7 @@ class HomeController {
      */
     public function indexAction(Application $app) {
         $trips = $app['dao.trip']->findAll();
-        $categories = $app['dao.trip']->getAllCategories();
+        $categories = $app['dao.category']->findAll();
         return $app['twig']->render('index.html.twig', array(
                                                         'trips' => $trips,
                                                         'categories' => $categories));

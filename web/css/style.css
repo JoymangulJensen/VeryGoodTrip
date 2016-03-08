@@ -2,6 +2,15 @@ body {
     padding-top: 70px;
 }
 
+.carousel-holder {
+    margin-bottom: 30px;
+}
+
+.carousel-control,
+.item {
+    border-radius: 4px;
+}
+
 .footer {
     border-top: 1px solid #ccc;
     padding-top: 10px;

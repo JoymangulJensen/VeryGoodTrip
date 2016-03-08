@@ -17,6 +17,36 @@
             </div>
 
             <div class="col-md-9">
+                <div class="row carousel-holder">
+
+                    <div class="col-md-12">
+                        <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+                            <ol class="carousel-indicators">
+                                <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
+                                <li data-target="#carousel-example-generic" data-slide-to="1"></li>
+                                <li data-target="#carousel-example-generic" data-slide-to="2"></li>
+                            </ol>
+                            <div class="carousel-inner">
+                            {% for trip in trips %}
+                                <div class="item" style=" width:100%; height: 400px !important;">
+                                    <img class="slide-image" src="{{ app.request.basepath }}/{{ trip.image }}" alt="" style="width: 100%;">
+                                </div>
+                            {% endfor %}
+                                <div class="item active">
+                                    <img class="slide-image" src="http://placehold.it/850x400" alt="">
+                                </div>
+                            </div>
+                            <a class="left carousel-control" href="#carousel-example-generic" data-slide="prev">
+                                <span class="glyphicon glyphicon-chevron-left"></span>
+                            </a>
+                            <a class="right carousel-control" href="#carousel-example-generic" data-slide="next">
+                                <span class="glyphicon glyphicon-chevron-right"></span>
+                            </a>
+                        </div>
+                    </div>
+
+                </div>
+
                 {#
                 {% for trip in trips %}
                     <p class="lead"><a class="articleTitle" href="{{ path('trip', { 'id': trip.id }) }}">{{ trip.name }}</a></p>

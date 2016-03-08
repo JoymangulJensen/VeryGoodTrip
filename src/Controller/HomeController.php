@@ -13,11 +13,9 @@ class HomeController {
      * @param Application $app Silex application
      */
     public function indexAction(Application $app) {
-        $trips = $app['dao.trip']->findAll();
         $categories = $app['dao.category']->findAll();
-        return $app['twig']->render('index.html.twig', array(
-                                                        'trips' => $trips,
-                                                        'categories' => $categories));
+        $trips = $app['dao.trip']->findAll();
+        return $app['twig']->render('index.html.twig', array('categories' => $categories, 'trips' => $trips));
     }
 
 

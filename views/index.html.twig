@@ -11,7 +11,7 @@
                 <p class="lead">Catégorie</p>
                 <div class="list-group">
                     {% for category in categories %}
-                        <a href="#" class="list-group-item">{{ category.name }}</a>
+                        <a href="#" class="list-group-item">{{ category.name }} ({{ category.nbtrips }})</a>
                     {% endfor %}
                 </div>
             </div>

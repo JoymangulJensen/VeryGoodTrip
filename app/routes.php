@@ -3,11 +3,8 @@
 // Home page
 // $app->get('/', "VeryGoodTrip\Controller\HomeController::indexAction")->bind('home');
 
-$app->match('/', function() use ($app) {
-    $categories = $app['dao.category']->findAll();
-    return $app['twig']->render('index.html.twig', array('categories' => $categories));
-})->bind('home');
 
+$app->match('/', "VeryGoodTrip\Controller\HomeController::indexAction")->bind('home');
 // Detailed info about a trip
 $app->match('/trip/{id}', "VeryGoodTrip\Controller\HomeController::tripAction")->bind('trip');
 

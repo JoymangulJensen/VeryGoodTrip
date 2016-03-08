@@ -31,17 +31,41 @@ class CategoryDAO extends DAO
     }
 
     /**
+     * Return a list of all Categories, sorted by date (most recent first).
+     *
+     * @return array C list of all categories.
+     */
+    public function findAllWithCount() {
+        $sql = "select category.*, count(trip.trip_id) as nb_trips from category left join trip on trip.category_id =
+          category.category_id group by category.category_id order by category_id asc";
+        $result = $this->getDb()->fetchAll($sql);
+
+        // Convert query result to an array of domain objects
+        $categories = array();
+        foreach ($result as $row) {
+            $categoryId = $row['category_id'];
+            $category = $this->buildDomainObject($row);
+            $category->setNbtrips($row['nb_trips']);
+
+            $categories[$categoryId] = $category;
+            // $categories[$categoryId]->setNbtrips(3);
+        }
+        return $categories;
+    }
+
+    /**
      * Creates a Category object based on a DB row.
      *
      * @param array $row The DB row containing Category data.
      * @return \VeryGoodTrip\Domain\Category
      */
     protected function buildDomainObject($row) {
-        $category = new Category();
+        $category= new Category();
         $category->setId($row['category_id']);
         $category->setDescription($row['category_description']);
         $category->setName($row['category_name']);
         $category->setImage($row['category_image']);
+        // $category->setNbtrips($count);
 
         return $category;
     }

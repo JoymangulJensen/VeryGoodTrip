@@ -14,7 +14,7 @@ class HomeController {
      */
     public function indexAction(Application $app) {
         $trips = $app['dao.trip']->findAll();
-        $categories = $app['dao.category']->findAll();
+        $categories = $app['dao.category']->findAllWithCount();
         return $app['twig']->render('index.html.twig', array(
                                                         'trips' => $trips,
                                                         'categories' => $categories));

@@ -25,7 +25,11 @@ class Category
      * @var string
      */
     private $image;
-
+    /**
+     * Category number of trips associated
+     * @var integer
+     */
+    private $nbtrips;
 
     /*************************************************************
      *************       Getters and setters         *************
@@ -92,6 +96,22 @@ class Category
     public function setImage($image)
     {
         $this->image = $image;
+    }
+
+    /**
+     * @return integer
+     */
+    public function getNbtrips()
+    {
+        return $this->nbtrips;
+    }
+
+    /**
+     * @param integer $nbtrips
+     */
+    public function setNbtrips($nbtrips)
+    {
+        $this->nbtrips = $nbtrips;
     }
 
 }

@@ -38,6 +38,26 @@ class TripDAO extends DAO
     }
 
     /**
+     * Returns a random list of trips, the number of trips is entered as parameter
+     * @param $nbtrips Integer : Number of trips
+     * @return trips[] An array of \VeryGoodTime\Domain\Trip
+     */
+    public function findRandom($nbtrips)
+    {
+        $sql = "select * from trip order by RAND() limit :nbtrips";
+        $result = $this->getDb()->prepare($sql);
+        $result->bindValue("nbtrips", $nbtrips, \PDO::PARAM_INT);
+        $result->execute();
+        // Convert query result to an array of domain objects
+        $trips = array();
+        foreach ($result as $row) {
+            $trip_id= $row['trip_id'];
+            $trips[$trip_id] = $this->buildDomainObject($row);
+        }
+        return $trips;
+    }
+
+    /**
      * Returns a trip matching the supplied id.
      * @param integer $id
      * @return Trip

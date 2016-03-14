@@ -75,6 +75,32 @@ class TripDAO extends DAO
     }
 
     /**
+     * Return a list of all trips for a category.
+     *
+     * @param integer $categoryId The Category id.
+     *
+     * @return array A list of all trips for the category.
+     */
+    public function findAllByCategory($categoryId)
+    {
+        $category = $this->categoryDAO->find($categoryId);
+
+        $sql = "select * from trip where category_id = ?";
+
+        $result = $this->getDb()->fetchAll($sql, array($categoryId));
+
+        $trips = array();
+
+        foreach ($result as $row) {
+            $tripId = $row['trip_id'];
+            $trip = $this->buildDomainObject($row);
+            $trip->setCategory($category);
+            $trips[$tripId] = $trip;
+        }
+        return $trips;
+    }
+
+    /**
      * Creates a trip object based on a DB row.
      *
      * @param array : $row The DB row containing Trip data.

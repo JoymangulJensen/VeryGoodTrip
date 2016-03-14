@@ -52,7 +52,8 @@ class HomeController {
 
     public function categoryAction($id, Request $request, Application $app) {
         $category = $app['dao.category']->find($id);
-        return $app['twig']->render('category.html.twig', array('category' => $category));
+        $trips = $app['dao.trip']->findAllByCategory($id);
+        return $app['twig']->render('category.html.twig', array('category' => $category, 'trips' => $trips));
     }
 
     /**

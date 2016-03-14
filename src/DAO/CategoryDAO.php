@@ -65,7 +65,6 @@ class CategoryDAO extends DAO
         $category->setDescription($row['category_description']);
         $category->setName($row['category_name']);
         $category->setImage($row['category_image']);
-        // $category->setNbtrips($count);
 
         return $category;
     }

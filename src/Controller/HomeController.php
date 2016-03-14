@@ -50,6 +50,11 @@ class HomeController {
         return $app['twig']->render('trip.html.twig', array('trip' => $trip));
     }
 
+    public function categoryAction($id, Request $request, Application $app) {
+        $category = $app['dao.category']->find($id);
+        return $app['twig']->render('category.html.twig', array('category' => $category));
+    }
+
     /**
      * User login controller.
      *

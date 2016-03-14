@@ -8,6 +8,9 @@ $app->match('/', "VeryGoodTrip\Controller\HomeController::indexAction")->bind('h
 // Detailed info about a trip
 $app->match('/trip/{id}', "VeryGoodTrip\Controller\HomeController::tripAction")->bind('trip');
 
+// Detailed info of a category
+$app->match('/category/{id}', "VeryGoodTrip\Controller\HomeController::categoryAction")->bind('category');
+
 /*
 
 // Login form

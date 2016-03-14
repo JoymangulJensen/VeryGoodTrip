@@ -1,0 +1,14 @@
+{% extends "layout.html.twig" %}
+
+{% block title %}{{ category.name }}{% endblock %}
+
+{% block content %}
+
+    <div class="row">
+        <div class="col-md-8 col-md-offset-2">
+            <img src="{{ app.request.basepath }}/{{ category.image }}" class="img-responsive" alt="">
+            <h3>{{ category.name }}</h3>
+            <p>{{ category.description }}</p>
+        </div>
+    </div>
+{% endblock %}

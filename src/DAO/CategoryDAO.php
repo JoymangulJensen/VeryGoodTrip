@@ -31,6 +31,25 @@ class CategoryDAO extends DAO
     }
 
     /**
+     * Returns a random list of images, the number is entered as parameter
+     * @param $nbImages Integer : Number of images
+     * @return string[] An array of url of images
+     */
+    public function findRandomImages($nbImages)
+    {
+        $sql = "select category_image from category order by RAND() limit :nbImages";
+        $result = $this->getDb()->prepare($sql);
+        $result->bindValue("nbImages", $nbImages, \PDO::PARAM_INT);
+        $result->execute();
+        // Convert query result to an array of domain objects
+        $images = array();
+        foreach ($result as $row) {
+            $images[] = $row['category_image'];
+        }
+        return $images;
+    }
+
+    /**
      * Return a list of all Categories, sorted by date (most recent first).
      *
      * @return array C list of all categories.

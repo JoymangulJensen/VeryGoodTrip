@@ -4,33 +4,31 @@
 
 {% block content %}
 
-    <div class="row">
-        <div class="">
-            <h3>{{ category.name }}</h3>
-            <p><img src="{{ app.request.basepath }}/{{ category.image }}" class="img-responsive center-block" alt=""></p>
-            <p>{{ category.description }}</p>
-        </div>
-    </div>
+    <div class="container">
 
-    <div class="row">
-        <div class="">
-            <hr>
-            <h3>List of the trips</h3>
-            {% for trip in trips %}
-                <div class="col-sm-4 col-lg-4 col-md-4">
-                    <div class="thumbnail">
-                        <a href="{{ path('trip', { 'id': trip.id }) }}"><img src="{{ app.request.basepath }}/{{ trip.image }}" alt=""></a>
-                        <div class="caption">
-                            <h4 class="pull-right">{{ trip.price }} €</h4>
-                            <h4><a href="{{ path('trip', { 'id': trip.id }) }}">{{ trip.name }}</a>
-                            </h4>
-                            <p>{{ trip.description|truncate(140) }} </p>
-                        </div>
+        <div class="row">
+            <div class="thumbnail center-block">
+                <h3>{{ category.name }}</h3>
+                <p>{{ category.description }}</p>
+            </div>
+        </div>
+
+        <div class="row">
+        {% for trip in trips %}
+            <div class="col-sm-4 col-lg-4 col-md-4">
+                <div class="thumbnail">
+                    <a href="{{ path('trip', { 'id': trip.id }) }}"><img src="{{ app.request.basepath }}/{{ trip.image }}" alt=""></a>
+                    <div class="caption">
+                        <h4 class="pull-right">{{ trip.price }} €</h4>
+                        <h4><a href="{{ path('trip', { 'id': trip.id }) }}">{{ trip.name }}</a>
+                        </h4>
+                        <p>{{ trip.description|truncate(140) }} </p>
                     </div>
                 </div>
-            {% else %}
-                No Trips yet.
-            {% endfor %}
+            </div>
+        {% else %}
+            <p>Aucun voyage pour cette catégorie !</p>
+        {% endfor %}
         </div>
     </div>
 

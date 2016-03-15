@@ -14,12 +14,13 @@ class HomeController {
      */
     public function indexAction(Application $app) {
         $trips = $app['dao.trip']->findRandom(2);
+        $images = $app['dao.category']->findRandomImages(5);
         $categories = $app['dao.category']->findAllWithCount();
         return $app['twig']->render('index.html.twig', array(
                                                         'trips' => $trips,
-                                                        'categories' => $categories));
+                                                        'categories' => $categories,
+                                                        'images' => $images));
     }
-
 
     /**
      * Trip details controller

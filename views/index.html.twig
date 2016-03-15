@@ -31,9 +31,9 @@
                                 <div class="item active">
                                     <img class="slide-image" src="{{ app.request.basepath }}/images/welcome_banner.png" alt="">
                                 </div>
-                            {% for trip in trips %}
+                            {% for image in images %}
                                 <div class="item" style=" width:100%; height: 400px !important;">
-                                    <img class="slide-image" src="{{ app.request.basepath }}/{{ trip.image }}" alt="" style="width: 100%;">
+                                    <img class="slide-image" src="{{ app.request.basepath }}/{{ image }}" alt="" style="width: 100%;">
                                 </div>
                             {% endfor %}
 

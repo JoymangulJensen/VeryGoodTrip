@@ -11,12 +11,19 @@ $app->match('/trip/{id}', "VeryGoodTrip\Controller\HomeController::tripAction")-
 // Detailed info of a category
 $app->match('/category/{id}', "VeryGoodTrip\Controller\HomeController::categoryAction")->bind('category');
 
-/*
-
 // Login form
-$app->get('/login', "MicroCMS\Controller\HomeController::loginAction")->bind('login');
+$app->get('/login', "VeryGoodTrip\Controller\HomeController::loginAction")->bind('login');
 
-// Admin zone
+/**
+ * Temporary create thos route to generate an encryoted password
+ */
+$app->get('/hashpwd', function() use ($app) {
+    $rawPassword = 'admin';
+    $salt = '%qUgq3NAYfC1MKwrW?yevbE';
+    $encoder = $app['security.encoder.digest'];
+    return $encoder->encodePassword($rawPassword, $salt);
+});
+/*n zone
 $app->get('/admin', "MicroCMS\Controller\AdminController::indexAction")->bind('admin');
 
 // Add a new article

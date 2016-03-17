@@ -19,12 +19,12 @@
     <div class="well">
         {{ form_start(userForm, { 'attr': {'class': 'form-horizontal'} }) }}
         <div class="form-group">
-            {{ form_label(userForm.username, null, { 'label_attr':  {
+            {{ form_label(userForm.email, null, { 'label_attr':  {
                 'class': 'col-sm-5 control-label'
             }}) }}
             <div class="col-sm-4">
-                {{ form_errors(userForm.username) }}
-                {{ form_widget(userForm.username, { 'attr':  {
+                {{ form_errors(userForm.email) }}
+                {{ form_widget(userForm.email, { 'attr':  {
                     'class': 'form-control'
                 }}) }}
             </div>
@@ -50,19 +50,64 @@
             </div>
         </div>
         <div class="form-group">
-            {{ form_label(userForm.role, null, { 'label_attr':  {
+            {{ form_label(userForm.firstname, "First name", { 'label_attr':  {
                 'class': 'col-sm-5 control-label'
             }}) }}
-            <div class="col-sm-2">
-                {{ form_errors(userForm.role) }}
-                {{ form_widget(userForm.role, { 'attr':  {
+            <div class="col-sm-4">
+                {{ form_errors(userForm.firstname) }}
+                {{ form_widget(userForm.firstname, { 'attr':  {
                     'class': 'form-control'
                 }}) }}
             </div>
         </div>
         <div class="form-group">
+            {{ form_label(userForm.lastname, "Last name", { 'label_attr':  {
+                'class': 'col-sm-5 control-label'
+            }}) }}
+            <div class="col-sm-4">
+                {{ form_errors(userForm.lastname) }}
+                {{ form_widget(userForm.lastname, { 'attr':  {
+                    'class': 'form-control'
+                }}) }}
+            </div>
+        </div>
+        <div class="form-group">
+            {{ form_label(userForm.address, null, { 'label_attr':  {
+                'class': 'col-sm-5 control-label'
+            }}) }}
+            <div class="col-sm-4">
+                {{ form_errors(userForm.address) }}
+                {{ form_widget(userForm.address, { 'attr':  {
+                    'class': 'form-control'
+                }}) }}
+            </div>
+        </div>
+        <div class="form-group">
+            {{ form_label(userForm.town, null, { 'label_attr':  {
+                'class': 'col-sm-5 control-label'
+            }}) }}
+            <div class="col-sm-4">
+                {{ form_errors(userForm.town) }}
+                {{ form_widget(userForm.town, { 'attr':  {
+                    'class': 'form-control'
+                }}) }}
+            </div>
+        </div>
+        <div class="form-group">
+            {{ form_label(userForm.zipcode, "Zip code", { 'label_attr':  {
+                'class': 'col-sm-5 control-label'
+            }}) }}
+            <div class="col-sm-4">
+                {{ form_errors(userForm.zipcode) }}
+                {{ form_widget(userForm.zipcode, { 'attr':  {
+                    'class': 'form-control'
+                }}) }}
+            </div>
+        </div>
+
+        <div class="form-group">
             <div class="col-sm-offset-5 col-sm-3">
-                <input type="submit" class="btn btn-primary" value="Save" />
+                <input type="submit" class="btn btn-primary" value="Sign in" />
             </div>
         </div>
         {{ form_end(userForm) }}

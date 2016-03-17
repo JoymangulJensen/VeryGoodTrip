@@ -2,8 +2,10 @@
 
 namespace VeryGoodTrip\Controller;
 
+use VeryGoodTrip\Form\Type\UserType;
 use Silex\Application;
 use Symfony\Component\HttpFoundation\Request;
+use VeryGoodTrip\Domain\User;
 
 class HomeController {
 
@@ -67,6 +69,31 @@ class HomeController {
         return $app['twig']->render('login.html.twig', array(
             'error'         => $app['security.last_error']($request),
             'last_username' => $app['session']->get('_security.last_username'),
+        ));
+    }
+
+    /**
+     * Sign In Page controller
+     *
+     * @param Request $request Incoming request
+     * @param Application $app $Silex application
+     * @return mixed
+     */
+    public function signInAction(Request $request, Application $app) {
+        $user = new User();
+        $user->setSalt("qUgq3NAYfC1MKwrW?yevbE");
+        $user->setRole("ROLE_USER");
+        $userForm = $app['form.factory']->create(new UserType(), $user);
+        $userForm->handleRequest($request);
+        if ($userForm->isSubmitted() && $userForm->isVallid()){
+            $app['dao.user']->save($user);
+            $app['session']->getFlashBag()->add('success', 'Votre compte a été créé avec succès ! ');
+        }
+        $userFormView = $userForm->createView();
+
+        return $app['twig']->render('user_form.html.twig', array(
+            "title" => "Sign In",
+            "userForm" => $userFormView
         ));
     }
 }

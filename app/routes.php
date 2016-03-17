@@ -15,7 +15,7 @@ $app->match('/category/{id}', "VeryGoodTrip\Controller\HomeController::categoryA
 $app->get('/login', "VeryGoodTrip\Controller\HomeController::loginAction")->bind('login');
 
 // Signin form
-$app->get('/signin', "VeryGoodTrip\Controller\HomeController::signinAction")->bind('signin');
+$app->get('/signin', "VeryGoodTrip\Controller\HomeController::signInAction")->bind('signin');
 
 /**
  * Temporary create thos route to generate an encryoted password

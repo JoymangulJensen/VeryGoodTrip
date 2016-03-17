@@ -11,22 +11,19 @@ use VeryGoodTrip\Domain\User;
 class UserDAO extends DAO implements UserProviderInterface
 {
 
-
-
-
     /**
      * Returns a list of all users, sorted by role and name.
      *
      * @return array A list of all users.
      */
     public function findAll() {
-        $sql = "select * from t_user order by usr_role, usr_name";
+        $sql = "select * from user";
         $result = $this->getDb()->fetchAll($sql);
 
         // Convert query result to an array of domain objects
         $entities = array();
         foreach ($result as $row) {
-            $id = $row['usr_id'];
+            $id = $row['user_email'];
             $entities[$id] = $this->buildDomainObject($row);
         }
         return $entities;
@@ -36,7 +33,7 @@ class UserDAO extends DAO implements UserProviderInterface
     /**
      * Saves a user into the database.
      *
-     * @param \MicroCMS\Domain\User $user The user to save
+     * @param \VeryGoodTrip\Domain\User $user The user to save
      */
     public function save(User $user) {
         $userData = array(

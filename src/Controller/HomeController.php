@@ -81,11 +81,18 @@ class HomeController {
      */
     public function signInAction(Request $request, Application $app) {
         $user = new User();
-        $user->setSalt("qUgq3NAYfC1MKwrW?yevbE");
+        // Warning : constant salt
+        $salt = "qUgq3NAYfC1MKwrW?yevbE";
+        $user->setSalt($salt);
         $user->setRole("ROLE_USER");
+
+        $encoder = $app['security.encoder.digest'];
+
         $userForm = $app['form.factory']->create(new UserType(), $user);
         $userForm->handleRequest($request);
-        if ($userForm->isSubmitted() && $userForm->isVallid()){
+        if ($userForm->isSubmitted() && $userForm->isValid()){
+            // Salt the password of the user
+            $user->setPassword($encoder->encodePassword($user->getPassword(), $salt));
             $app['dao.user']->save($user);
             $app['session']->getFlashBag()->add('success', 'Votre compte a été créé avec succès ! ');
         }

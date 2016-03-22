@@ -12,11 +12,15 @@ class UserType extends AbstractType
     {
         $builder
             ->add('email', 'text', array(
-                'constraints' => new Assert\Email()))
+                'constraints' => new Assert\Email(),
+                'attr' => array(
+                    'placeholder' => 'i.e: john@doe.com',
+                )))
             ->add('firstname', 'text', array(
-                'constraints' => array(new Assert\NotBlank(), new Assert\Length(array('min' => 5)))))
+                'constraints' => array(new Assert\NotBlank())))
             ->add('lastname', 'text', array(
-                'constraints' => array(new Assert\NotBlank(), new Assert\Length(array('min' => 5)))))
+                'constraints' => array(new Assert\NotBlank()),
+                ))
             ->add('address', 'textarea')
             ->add('town', 'text')
             ->add('zipcode', 'text')

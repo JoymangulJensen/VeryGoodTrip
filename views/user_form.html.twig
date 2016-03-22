@@ -16,6 +16,12 @@
         </div>
     {% endif %}
 
+    {% if form_errors(userForm.email) %}
+        <div class="alert alert-danger">
+            {{ form_errors(userForm.email) }}
+        </div>
+    {% endif %}
+
     <div class="well">
         {{ form_start(userForm, { 'attr': {'class': 'form-horizontal'} }) }}
         <div class="form-group">
@@ -23,7 +29,6 @@
                 'class': 'col-sm-5 control-label'
             }}) }}
             <div class="col-sm-4">
-                {{ form_errors(userForm.email) }}
                 {{ form_widget(userForm.email, { 'attr':  {
                     'class': 'form-control'
                 }}) }}
@@ -107,7 +112,7 @@
 
         <div class="form-group">
             <div class="col-sm-offset-5 col-sm-3">
-                <input type="submit" class="btn btn-primary" value="Sign in" />
+                <input type="submit" class="btn btn-primary btn-block" value="Sign in" />
             </div>
         </div>
         {{ form_end(userForm) }}

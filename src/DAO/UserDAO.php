@@ -37,21 +37,26 @@ class UserDAO extends DAO implements UserProviderInterface
      */
     public function save(User $user) {
         $userData = array(
-            'usr_name' => $user->getUsername(),
-            'usr_salt' => $user->getSalt(),
-            'usr_password' => $user->getPassword(),
-            'usr_role' => $user->getRole()
+            'user_email' => $user->getEmail(),
+            'user_salt' => $user->getSalt(),
+            'user_password' => $user->getPassword(),
+            'user_role' => $user->getRole(),
+            'user_lastname' => $user->getLastname(),
+            'user_firstname' => $user->getFirstname(),
+            'user_address' => $user->getAddress(),
+            'user_town' => $user->getTown(),
+            'user_zipcode' => $user->getZipcode()
         );
 
-        if ($user->getId()) {
+        if (false) { // Todo : change here to implement the update of an user profile
             // The user has already been saved : update it
-            $this->getDb()->update('t_user', $userData, array('usr_id' => $user->getId()));
+            $this->getDb()->update('user', $userData, array('user_email' => $user->getEmail()));
         } else {
             // The user has never been saved : insert it
-            $this->getDb()->insert('t_user', $userData);
+            $this->getDb()->insert('user', $userData);
             // Get the id of the newly created user and set it on the entity.
-            $id = $this->getDb()->lastInsertId();
-            $user->setId($id);
+            // $id = $this->getDb()->lastInsertId();
+            $user->setEmail($user->getEmail());
         }
     }
 
@@ -62,7 +67,7 @@ class UserDAO extends DAO implements UserProviderInterface
      */
     public function delete($id) {
         // Delete the user
-        $this->getDb()->delete('t_user', array('usr_id' => $id));
+        $this->getDb()->delete('user', array('user_email' => $id));
     }
 
 

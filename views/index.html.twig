@@ -11,7 +11,8 @@
                 <p class="lead">Catégorie</p>
                 <div class="list-group">
                     {% for category in categories %}
-                        <a href="{{ path('category', { 'id': category.id }) }}" class="list-group-item">{{ category.name }} ({{ category.nbtrips }})</a>
+                        <a href="{{ path('category', { 'id': category.id }) }}"
+                           class="list-group-item">{{ category.name }} ({{ category.nbtrips }})</a>
                     {% endfor %}
                 </div>
             </div>
@@ -29,13 +30,15 @@
                             </ol>
                             <div class="carousel-inner">
                                 <div class="item active">
-                                    <img class="slide-image" src="{{ app.request.basepath }}/images/welcome_banner.png" alt="">
+                                    <img class="slide-image" src="{{ app.request.basepath }}/images/welcome_banner.png"
+                                         alt="">
                                 </div>
-                            {% for image in images %}
-                                <div class="item" style=" width:100%; height: 400px !important;">
-                                    <img class="slide-image" src="{{ app.request.basepath }}/{{ image }}" alt="" style="width: 100%;">
-                                </div>
-                            {% endfor %}
+                                {% for image in images %}
+                                    <div class="item" style=" width:100%; height: 400px !important;">
+                                        <img class="slide-image" src="{{ app.request.basepath }}/{{ image }}" alt=""
+                                             style="width: 100%;">
+                                    </div>
+                                {% endfor %}
 
                             </div>
                             <a class="left carousel-control" href="#carousel-example-generic" data-slide="prev">
@@ -53,7 +56,8 @@
                     {% for trip in trips %}
                         <div class="col-sm-4 col-lg-4 col-md-4">
                             <div class="thumbnail">
-                                <img src="{{ app.request.basepath }}/{{ trip.image }}" alt="" style=" width:100%; height: 150px !important;">
+                                <img src="{{ app.request.basepath }}/{{ trip.image }}" alt=""
+                                     style=" width:100%; height: 150px !important;">
                                 <div class="caption">
                                     <h4 class="pull-right">{{ trip.price }} €</h4>
                                     <h4><a href="{{ path('trip', { 'id': trip.id }) }}">{{ trip.name }}</a>
@@ -75,19 +79,19 @@
                     {% endfor %}
                 </div>
 
-                </div>
-
-                {#
-                {% for trip in trips %}
-                    <p class="lead"><a class="articleTitle" href="{{ path('trip', { 'id': trip.id }) }}">{{ trip.name }}</a></p>
-                    <p>{{ trip.description }}</p>
-                    <p>{{ trip.price }}</p>
-                    <p>{{ trip.category.name }}</p>
-                    <p>{{ trip.image }}</p>
-                {% endfor %}
-                #}
             </div>
+
+            {#
+            {% for trip in trips %}
+                <p class="lead"><a class="articleTitle" href="{{ path('trip', { 'id': trip.id }) }}">{{ trip.name }}</a></p>
+                <p>{{ trip.description }}</p>
+                <p>{{ trip.price }}</p>
+                <p>{{ trip.category.name }}</p>
+                <p>{{ trip.image }}</p>
+            {% endfor %}
+            #}
         </div>
+    </div>
     </div>
     <!-- /.container -->
 {% endblock %}

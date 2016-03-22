@@ -94,7 +94,7 @@ class HomeController {
             // Salt the password of the user
             $user->setPassword($encoder->encodePassword($user->getPassword(), $salt));
             $app['dao.user']->save($user);
-            $app['session']->getFlashBag()->add('success', 'Votre compte a été créé avec succès ! ');
+            $app['session']->getFlashBag()->add('success', 'Your account has been successfully created');
         }
         $userFormView = $userForm->createView();
 

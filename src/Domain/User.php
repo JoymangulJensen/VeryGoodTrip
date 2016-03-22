@@ -8,6 +8,12 @@ use Symfony\Component\Security\Core\User\UserInterface;
 class User implements UserInterface
 {
     /**
+     * User id
+     * @var integer
+     */
+    private $id;
+
+    /**
      * User email
      * @var string
      */
@@ -59,6 +65,22 @@ class User implements UserInterface
     /*************************************************************
      *************       Getters and setters         *************
      *************************************************************/
+
+    /**
+     * @return int
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * @param int $id
+     */
+    public function setId($id)
+    {
+        $this->id = $id;
+    }
 
     public function getEmail()
     {
@@ -145,18 +167,6 @@ class User implements UserInterface
         $this->role = $role;
     }
 
-    /*************************************************************
-     **************       Implement Methods         **************
-     *************************************************************/
-
-    /**
-     * @inheritDoc
-     */
-    public function getRoles()
-    {
-        return array($this->getRole());
-    }
-
     /**
      * @inheritDoc
      */
@@ -171,6 +181,18 @@ class User implements UserInterface
     public function getPassword()
     {
         return $this->password;
+    }
+
+    /*************************************************************
+     **************       Implement Methods         **************
+     *************************************************************/
+
+    /**
+     * @inheritDoc
+     */
+    public function getRoles()
+    {
+        return array($this->getRole());
     }
 
 

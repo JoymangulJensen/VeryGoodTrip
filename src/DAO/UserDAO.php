@@ -48,9 +48,9 @@ class UserDAO extends DAO implements UserProviderInterface
             'user_zipcode' => $user->getZipcode()
         );
 
-        if (false) { // Todo : change here to implement the update of an user profile
+        if ($user->getId()) { // Todo : change here to implement the update of an user profile
             // The user has already been saved : update it
-            $this->getDb()->update('user', $userData, array('user_email' => $user->getEmail()));
+            $this->getDb()->update('user', $userData, array('user_id' => $user->getEmail()));
         } else {
             // The user has never been saved : insert it
             $this->getDb()->insert('user', $userData);

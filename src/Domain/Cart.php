@@ -15,15 +15,10 @@ class Cart
      */
     private $user;
     /**
-     * Date on which the cart wad created
-     * @var string
+     * A trip in the user cart
+     * @var \VeryGoodTrip\Domain\Trip
      */
-    private $date;
-    /**
-     *
-     * @var trips[] An array of \VeryGoodTrip\Domain\Trip
-     */
-    private $trips;
+    private $trip;
 
 
 
@@ -63,52 +58,19 @@ class Cart
     }
 
     /**
-     * @return string
+     * @return trip
      */
-    public function getDate()
+    public function getTrip()
     {
-        return $this->date;
+        return $this->trip;
     }
 
     /**
-     * @param string $date
+     * @param trip $trip
      */
-    public function setDate($date)
+    public function setTrip($trip)
     {
-        $this->date = $date;
+        $this->trip = $trip;
     }
 
-    /**
-     * @return trip[]
-     */
-    public function getTrips()
-    {
-        return $this->trips;
-    }
-
-    /**
-     * @param trip[] $trips
-     */
-    public function setTrips($trips)
-    {
-        $this->trips = $trips;
-    }
-
-    /*************************************************************
-     ********************       Methods        *******************
-     *************************************************************/
-    /**
-     * Add a trip to the array of trips in a cart
-     * @param $trip \VeryGoodTrip\Domain\Trip
-     * @return bool confirmation of addition
-     */
-    public function addTrip($trip)
-    {
-        if(isset($trip))
-        {
-            $this->trips[$trip->getId()] = $trip;
-            return true;
-        }
-        return false;
-    }
 }

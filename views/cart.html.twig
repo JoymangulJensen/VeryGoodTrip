@@ -1,0 +1,12 @@
+{% extends "layout.html.twig" %}
+
+{% block title %}Home{% endblock %}
+
+{% block content %}
+    {% for cart in carts %}
+        <article>
+            <h2>{{ cart.id }}</h2>
+            <h3>{{ cart.user.email }}</h3>
+        </article>
+    {% endfor %}
+{% endblock %}

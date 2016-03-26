@@ -89,6 +89,23 @@ class UserDAO extends DAO implements UserProviderInterface
     }
 
     /**
+     * Returns a user matching the supplied email.
+     *
+     * @param integer $username The email/username of user.
+     *
+     * @return \VeryGoodTrip\Domain\User | throws an exception if no matching user is found
+     */
+    public function findById($id) {
+        $sql = "select * from user where user_id=?";
+        $row = $this->getDb()->fetchAssoc($sql, array($id));
+
+        if ($row)
+            return $this->buildDomainObject($row);
+        else
+            throw new UsernameNotFoundException(sprintf('User "%s" not found.', "log error"));
+    }
+
+    /**
      * {@inheritDoc}
      */
     public function loadUserByUsername($username)
@@ -124,6 +141,7 @@ class UserDAO extends DAO implements UserProviderInterface
      */
     protected function buildDomainObject($row) {
         $user = new User();
+        $user->setId($row['user_id']);
         $user->setEmail($row['user_email']);
         $user->setLastname($row['user_lastname']);
         $user->setFirstname($row['user_firstname']);

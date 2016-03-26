@@ -103,4 +103,18 @@ class HomeController {
             "userForm" => $userFormView
         ));
     }
+
+    public function cartAction(Request $request, Application $app)
+    {
+        $carts = Array();
+        if ($app['security.authorization_checker']->isGranted('IS_AUTHENTICATED_FULLY'))
+        {
+            $user = $app['user'];
+            $carts = $app['dao.cart']->find($user->getId());
+
+        }
+
+        return $app['twig']->render('cart.html.twig', array(
+            'carts' => $carts,));
+    }
 }

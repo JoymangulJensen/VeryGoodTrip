@@ -17,6 +17,8 @@ $app->get('/login', "VeryGoodTrip\Controller\HomeController::loginAction")->bind
 // Signin form
 $app->match('/signin', "VeryGoodTrip\Controller\HomeController::signInAction")->bind('signin');
 
+$app->match('/cart', "VeryGoodTrip\Controller\HomeController::cartAction")->bind('cart');
+
 /**
  * Temporary create thos route to generate an encryoted password
  */
@@ -26,6 +28,7 @@ $app->get('/hashpwd', function() use ($app) {
     $encoder = $app['security.encoder.digest'];
     return $encoder->encodePassword($rawPassword, $salt);
 });
+
 /*n zone
 $app->get('/admin', "MicroCMS\Controller\AdminController::indexAction")->bind('admin');
 

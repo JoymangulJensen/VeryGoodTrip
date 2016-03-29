@@ -6,6 +6,7 @@ use VeryGoodTrip\Form\Type\UserType;
 use Silex\Application;
 use Symfony\Component\HttpFoundation\Request;
 use VeryGoodTrip\Domain\User;
+use VeryGoodTrip\Domain\Cart;
 
 class HomeController {
 
@@ -111,10 +112,23 @@ class HomeController {
         {
             $user = $app['user'];
             $carts = $app['dao.cart']->find($user->getId());
-
         }
 
         return $app['twig']->render('cart.html.twig', array(
             'carts' => $carts,));
+    }
+
+    public function addCartAction($id, Request $request, Application $app)
+    {
+        if ($app['security.authorization_checker']->isGranted('IS_AUTHENTICATED_FULLY')) {
+            $cart = new Cart();
+            $trip = $app['dao.trip']->find($id);
+            $user = $app['user'];
+            $cart->setTrip($trip);
+            $cart->setUser($user);
+            $app['dao.cart']->save($cart);
+        }
+
+        return $app->redirect('/cart');
     }
 }

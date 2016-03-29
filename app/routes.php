@@ -17,7 +17,12 @@ $app->get('/login', "VeryGoodTrip\Controller\HomeController::loginAction")->bind
 // Signin form
 $app->match('/signin', "VeryGoodTrip\Controller\HomeController::signInAction")->bind('signin');
 
+// View all cart
 $app->match('/cart', "VeryGoodTrip\Controller\HomeController::cartAction")->bind('cart');
+
+
+// View all cart
+$app->match('/addcart/{id}', "VeryGoodTrip\Controller\HomeController::addCartAction")->bind('addcart');
 
 /**
  * Temporary create thos route to generate an encryoted password

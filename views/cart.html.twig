@@ -3,10 +3,32 @@
 {% block title %}Home{% endblock %}
 
 {% block content %}
-    {% for cart in carts %}
-        <article>
-            <h2>{{ cart.id }}</h2>
-            <h3>{{ cart.user.email }}</h3>
-        </article>
-    {% endfor %}
+
+    <article>
+        <table id="table_id" class="display">
+            <thead>
+                <tr>
+                    <th>Catégorie</th>
+                    <th>Destination</th>
+                    <th>Prix</th>
+                </tr>
+            </thead>
+            <tfoot>
+            <tr>
+                <th>Catégorie</th>
+                <th>Destination</th>
+                <th>Prix</th>
+            </tr>
+            </tfoot>
+            <tbody>
+                    {% for cart in carts %}
+                    <tr>
+                        <td><a href="{{ path('category', { 'id': cart.trip.category.id }) }}">{{ cart.trip.category.name }}</a></td>
+                        <td><a href="{{ path('trip', { 'id': cart.trip.id }) }}">{{ cart.trip.name }}</td>
+                        <td>{{ cart.trip.price }}</td>
+                    </tr>
+                    {% endfor %}
+            </tbody>
+        </table>
+    </article>
 {% endblock %}

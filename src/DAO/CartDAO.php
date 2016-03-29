@@ -44,6 +44,18 @@ class CartDAO extends DAO
         return $carts;
     }
 
+    public function save($cart)
+    {
+        $cartData = array(
+            'trip_id' => $cart->getTrip()->getId(),
+            'user_id' => $cart->getUser()->getId()
+        );
+        // Insert cart in the database table "cart"
+        $this->getDb()->insert('cart', $cartData);
+        // Get the id of the newly created cart and set it on the entity.
+        $id = $this->getDb()->lastInsertId();
+        $cart->setId($id);
+    }
 
 
 

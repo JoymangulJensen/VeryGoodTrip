@@ -16,11 +16,19 @@
         </div>
     </div>
     <div class="row">
-        <div class="col-md-8 col-md-offset-2">
+        <div class="col-md-1 col-sm-1 ">
+
+        </div>
+        <div class="col-md-8 col-sm-8 ">
             <h3 class="pull-right">{{ trip.price }} €</h3>
             <h3>{{ trip.name }}</h3>
             <p>{{ trip.description }}</p>
             <p>{{  trip.category.name }}</p>
+        </div>
+        <div class="col-md-2 col-md-offset-1 col-sm-2 col-sm-offset-1">
+            <br/>
+            <br/>
+            <a href="{{ path('addcart', { 'id': trip.id}) }}" class="btn btn-info active">Ajouter au Panier<i class="glyphicon glyphicon-shopping-cart"></i></a>
         </div>
     </div>
 {% endblock %}

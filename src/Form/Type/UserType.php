@@ -23,7 +23,7 @@ class UserType extends AbstractType
                 ))
             ->add('address', 'textarea')
             ->add('town', 'text')
-            ->add('zipcode', 'text')
+            ->add('zipcode', 'integer')
             ->add('password', 'repeated', array(
                 'type'            => 'password',
                 'invalid_message' => 'The password fields must match.',

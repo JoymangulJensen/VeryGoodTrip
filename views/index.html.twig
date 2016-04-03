@@ -12,7 +12,7 @@
                 <div class="list-group">
                     {% for category in categories %}
                         <a href="{{ path('category', { 'id': category.id }) }}"
-                           class="list-group-item">{{ category.name }} ({{ category.nbtrips }})</a>
+                           class="list-group-item">{{ category.name }} <span class="badge">{{ category.nbtrips }}</span></a>
                     {% endfor %}
                 </div>
             </div>

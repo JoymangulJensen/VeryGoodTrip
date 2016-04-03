@@ -33,27 +33,15 @@ class HomeController {
      */
     public function tripAction($id, Request $request, Application $app) {
         $trip = $app['dao.trip']->find($id);
-        /*$commentFormView = null;
-        if ($app['security.authorization_checker']->isGranted('IS_AUTHENTICATED_FULLY')) {
-            // A user is fully authenticated : he can add comments
-            $comment = new Comment();
-            $comment->setArticle($article);
-            $user = $app['user'];
-            $comment->setAuthor($user);
-            $commentForm = $app['form.factory']->create(new CommentType(), $comment);
-            $commentForm->handleRequest($request);
-            if ($commentForm->isSubmitted() && $commentForm->isValid()) {
-                $app['dao.comment']->save($comment);
-                $app['session']->getFlashBag()->add('success', 'Your comment was succesfully added.');
-            }
-            $commentFormView = $commentForm->createView();
-        }
-        */
-
-        /*$comments = $app['dao.comment']->findAllByArticle($id);*/
         return $app['twig']->render('trip.html.twig', array('trip' => $trip));
     }
 
+    /**
+     * @param $id
+     * @param Request $request
+     * @param Application $app
+     * @return mixed
+     */
     public function categoryAction($id, Request $request, Application $app) {
         $category = $app['dao.category']->find($id);
         $trips = $app['dao.trip']->findAllByCategory($id);
@@ -112,6 +100,9 @@ class HomeController {
         {
             $user = $app['user'];
             $carts = $app['dao.cart']->find($user->getId());
+        }
+        else{
+            return $app->redirect('/login');
         }
 
         return $app['twig']->render('cart.html.twig', array(

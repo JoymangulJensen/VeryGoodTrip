@@ -5,6 +5,7 @@
 {% block content %}
 
     <article>
+        {%  if carts is not empty %}
         <table id="table_id" class="display">
             <thead>
                 <tr>
@@ -21,14 +22,17 @@
             </tr>
             </tfoot>
             <tbody>
-                    {% for cart in carts %}
+                {% for cart in carts %}
                     <tr>
                         <td><a href="{{ path('category', { 'id': cart.trip.category.id }) }}">{{ cart.trip.category.name }}</a></td>
                         <td><a href="{{ path('trip', { 'id': cart.trip.id }) }}">{{ cart.trip.name }}</td>
                         <td>{{ cart.trip.price }}</td>
                     </tr>
-                    {% endfor %}
+                {% endfor %}
             </tbody>
         </table>
+        {% else %}
+            <h1> Votre pannier est vide ! </h1>
+        {% endif %}
     </article>
 {% endblock %}

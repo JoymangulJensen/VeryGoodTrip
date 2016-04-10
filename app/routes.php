@@ -32,9 +32,17 @@ $app->match('/addcart/{id}', "VeryGoodTrip\Controller\HomeController::addCartAct
  ****                      Admin Zone                           ****
  ****                                                           ****
  *******************************************************************/
+// Trip management
+$app->get('/admin/trip', "VeryGoodTrip\Controller\AdminController::indexAction")->bind('admin_trip');
 
 // Edit an existing article
 $app->match('/admin/trip/{id}/edit', "VeryGoodTrip\Controller\AdminController::editTripAction")->bind('admin_trip_edit');
+
+// Add a new trip
+$app->match('/admin/trip/add', "VeryGoodTrip\Controller\AdminController::addTripAction")->bind('admin_trip_add');
+
+// Remove an article
+$app->get('/admin/trip/{id}/delete', "VeryGoodTrip\Controller\AdminController::deleteTripAction")->bind('admin_trip_delete');
 
 
 /**
@@ -48,16 +56,12 @@ $app->get('/hashpwd', function() use ($app) {
 });
 
 /*n zone
-$app->get('/admin', "MicroCMS\Controller\AdminController::indexAction")->bind('admin');
 
-// Add a new article
-$app->match('/admin/article/add', "MicroCMS\Controller\AdminController::addArticleAction")->bind('admin_article_add');
+
 
 // Edit an existing article
 $app->match('/admin/article/{id}/edit', "MicroCMS\Controller\AdminController::editArticleAction")->bind('admin_article_edit');
 
-// Remove an article
-$app->get('/admin/article/{id}/delete', "MicroCMS\Controller\AdminController::deleteArticleAction")->bind('admin_article_delete');
 
 // Edit an existing comment
 $app->match('/admin/comment/{id}/edit', "MicroCMS\Controller\AdminController::editCommentAction")->bind('admin_comment_edit');

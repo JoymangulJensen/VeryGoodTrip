@@ -128,6 +128,16 @@ class TripDAO extends DAO
     }
 
     /**
+     * Removes a trip from the database.
+     *
+     * @param integer $id The trip id.
+     */
+    public function delete($id) {
+        // Delete the trip
+        $this->getDb()->delete('trip', array('trip_id' => $id));
+    }
+
+    /**
      * Creates a trip object based on a DB row.
      *
      * @param array : $row The DB row containing Trip data.

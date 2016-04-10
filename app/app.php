@@ -43,14 +43,6 @@ $app->register(new Silex\Provider\TranslationServiceProvider());
 
 $app->register(new Silex\Provider\ServiceControllerServiceProvider());
 
-
-$app->register(
-    'app.image_type_extension',
-    'VeryGoodTrip\Form\Extension\ImageTypeExtension'
-);
-$app->addTag('form.type_extension', array('extended_type' => 'Symfony\Component\Form\Extension\Core\Type\FileType'));
-
-
 // Register services
 $app['dao.category'] = $app->share(function ($app) {
    return new VeryGoodTrip\DAO\CategoryDAO($app['db']);

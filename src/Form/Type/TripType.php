@@ -4,6 +4,7 @@ namespace VeryGoodTrip\Form\Type;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
+use VeryGoodTrip\Domain\Category;
 
 class TripType extends AbstractType
 {
@@ -11,7 +12,6 @@ class TripType extends AbstractType
      * @var array $categories List of all categories
      */
     private $categories;
-
 
     /**
      * Constructor
@@ -45,15 +45,16 @@ class TripType extends AbstractType
                 },
                 'expanded' => false,
                 'multiple' => false,
-                'mapped' => true  // ce champ n'est pas mis en correspondance avec la propriété de l'objet
+                'mapped' => true,  // ce champ n'est pas mis en correspondance avec la propriété de l'objet
             )
 
 
             )
-            ->add('image', 'file', array (
-                'data' => 'abcdef',
-                'data_class'   =>  null
-            ));
+            ->add('image', 'file', array(
+                    'required' => false,
+                    'data_class' => null
+                )
+            );
 
 
     }

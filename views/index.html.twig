@@ -19,10 +19,8 @@
                 {% if app.user and is_granted('ROLE_ADMIN') %}
                     <p class="lead">Administration</p>
                     <div class="list-group">
-                        {% for category in categories %}
-                            <a href="{{ path('category', { 'id': category.id }) }}"
-                               class="list-group-item">{{ category.name }} <span class="badge">{{ category.nbtrips }}</span></a>
-                        {% endfor %}
+                        <a href="{{ path('admin_trip') }}"
+                           class="list-group-item">Gestion des séjours</a>
                     </div>
                 {% endif %}
             </div>

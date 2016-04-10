@@ -114,4 +114,9 @@ class Category
         $this->nbtrips = $nbtrips;
     }
 
+
+    public function __toString()
+    {
+        return $this->getName();
+    }
 }

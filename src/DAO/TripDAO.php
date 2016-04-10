@@ -101,6 +101,33 @@ class TripDAO extends DAO
     }
 
     /**
+     * Saves a trip into the database
+     *
+     * @param \VeryGoodTrip\Domain\Article $article The article to save
+     */
+    public function save(Trip $trip) {
+        $tripData = array(
+            'trip_id' => $trip->getId(),
+            'trip_name' => $trip->getName(),
+            'trip_description' => $trip->getDescription(),
+            'trip_price' => $trip->getPrice(),
+            'category_id' => $trip->getCategory(),
+            'trip_image' => $trip->getImage()
+        );
+
+        if ($trip->getId()) {
+            // The article has already been saved : update it
+            $this->getDb()->update('trip', $tripData, array('trip_id' => $trip->getId()));
+        } else {
+            // The article has never been saved : insert it
+            $this->getDb()->insert('trip', $tripData);
+            // Get the id of the newly created article and set it on the entity.
+            $id = $this->getDb()->lastInsertId();
+            $trip->setId($id);
+        }
+    }
+
+    /**
      * Creates a trip object based on a DB row.
      *
      * @param array : $row The DB row containing Trip data.

@@ -17,12 +17,25 @@ $app->get('/login', "VeryGoodTrip\Controller\HomeController::loginAction")->bind
 // Signin form
 $app->match('/signin', "VeryGoodTrip\Controller\HomeController::signInAction")->bind('signin');
 
+// Edit an existing user
+$app->match('/user/{id}/edit', "VeryGoodTrip\Controller\HomeController::editUserAction")->bind('user_edit');
+
 // View all cart
 $app->match('/cart', "VeryGoodTrip\Controller\HomeController::cartAction")->bind('cart');
 
 
 // View all cart
 $app->match('/addcart/{id}', "VeryGoodTrip\Controller\HomeController::addCartAction")->bind('addcart');
+
+/*******************************************************************
+ ****                                                           ****
+ ****                      Admin Zone                           ****
+ ****                                                           ****
+ *******************************************************************/
+
+// Edit an existing article
+$app->match('/admin/trip/{id}/edit', "VeryGoodTrip\Controller\AdminController::editTripAction")->bind('admin_trip_edit');
+
 
 /**
  * Temporary create thos route to generate an encryoted password

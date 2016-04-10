@@ -4,13 +4,58 @@ namespace VeryGoodTrip\Controller;
 
 use Silex\Application;
 use Symfony\Component\HttpFoundation\Request;
-use MicroCMS\Domain\Article;
-use MicroCMS\Domain\User;
-use MicroCMS\Form\Type\ArticleType;
-use MicroCMS\Form\Type\CommentType;
-use MicroCMS\Form\Type\UserType;
+use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\HttpFoundation\RedirectResponse;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
+use VeryGoodTrip\Domain\Trip;
+use VeryGoodTrip\Domain\User;
+use VeryGoodTrip\Form\Type\TripType;
+use VeryGoodTrip\Form\Type\CommentType;
+use VeryGoodTrip\Form\Type\UserType;
 
 class AdminController {
+    /**
+     * Edit trip controller.
+     *
+     * @param integer $id Trip id
+     * @param Request $request Incoming request
+     * @param Application $app Silex application
+     */
+    public function editTripAction($id, Request $request, Application $app) {
+        $categories = $app['dao.category']->findAll();
+        $trip = $app['dao.trip']->find($id);
+        $tripForm = $app['form.factory']->create(new TripType($categories), $trip);
+
+        $tripForm->handleRequest($request);
+        if ($tripForm->isSubmitted() && $tripForm->isValid()) {
+            $files = $request->files->get($tripForm->getName());
+            /* Make sure that Upload Directory is properly configured and writable */
+            $path = __DIR__.'/../../web/images/';
+            $filename = $files['image']->getClientOriginalName();
+            $files['image']->move($path,$filename);
+
+            $trip->setImage('./images/'.$filename);
+
+            $app['dao.trip']->save($trip);
+            $app['session']->getFlashBag()->add('success', 'The article was succesfully updated.');
+        }
+        return $app['twig']->render('trip_form.html.twig', array(
+            'title' => 'Edit trip',
+            'tripForm' => $tripForm->createView()));
+    }
+
+
+
+
+
+
+
+
+
+
+
+
 
     /**
      * Admin home page controller.
@@ -41,30 +86,12 @@ class AdminController {
             $app['dao.article']->save($article);
             $app['session']->getFlashBag()->add('success', 'The article was successfully created.');
         }
-        return $app['twig']->render('article_form.html.twig', array(
+        return $app['twig']->render('trip_form.html.twig', array(
             'title' => 'New article',
             'articleForm' => $articleForm->createView()));
     }
 
-    /**
-     * Edit article controller.
-     *
-     * @param integer $id Article id
-     * @param Request $request Incoming request
-     * @param Application $app Silex application
-     */
-    public function editArticleAction($id, Request $request, Application $app) {
-        $article = $app['dao.article']->find($id);
-        $articleForm = $app['form.factory']->create(new ArticleType(), $article);
-        $articleForm->handleRequest($request);
-        if ($articleForm->isSubmitted() && $articleForm->isValid()) {
-            $app['dao.article']->save($article);
-            $app['session']->getFlashBag()->add('success', 'The article was succesfully updated.');
-        }
-        return $app['twig']->render('article_form.html.twig', array(
-            'title' => 'Edit article',
-            'articleForm' => $articleForm->createView()));
-    }
+
 
     /**
      * Delete article controller.

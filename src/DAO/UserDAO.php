@@ -50,7 +50,7 @@ class UserDAO extends DAO implements UserProviderInterface
 
         if ($user->getId()) { // Todo : change here to implement the update of an user profile
             // The user has already been saved : update it
-            $this->getDb()->update('user', $userData, array('user_id' => $user->getEmail()));
+            $this->getDb()->update('user', $userData, array('user_id' => $user->getId()));
         } else {
             // The user has never been saved : insert it
             $this->getDb()->insert('user', $userData);
@@ -79,7 +79,7 @@ class UserDAO extends DAO implements UserProviderInterface
      * @return \VeryGoodTrip\Domain\User | throws an exception if no matching user is found
      */
     public function find($username) {
-        $sql = "select * from user where user_email=?";
+        $sql = "select * from user where user_id=?";
         $row = $this->getDb()->fetchAssoc($sql, array($username));
 
         if ($row)
@@ -110,7 +110,13 @@ class UserDAO extends DAO implements UserProviderInterface
      */
     public function loadUserByUsername($username)
     {
-        return $this->find($username);
+        $sql = "select * from user where user_email=?";
+        $row = $this->getDb()->fetchAssoc($sql, array($username));
+
+        if ($row)
+            return $this->buildDomainObject($row);
+        else
+            throw new UsernameNotFoundException(sprintf('User "%s" not found.', $username));
     }
 
     /**

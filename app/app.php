@@ -26,6 +26,12 @@ $app->register(new Silex\Provider\SecurityServiceProvider(), array(
             }),
         ),
     ),
+    'security.role_hierarchy' => array(
+        'ROLE_ADMIN' => array('ROLE_USER'),
+    ),
+    'security.access_rules' => array(
+        array('^/admin', 'ROLE_ADMIN'),
+    ),
 ));
 $app['twig'] = $app->share($app->extend('twig', function(Twig_Environment $twig, $app) {
     $twig->addExtension(new Twig_Extensions_Extension_Text());
@@ -36,6 +42,14 @@ $app->register(new Silex\Provider\FormServiceProvider());
 $app->register(new Silex\Provider\TranslationServiceProvider());
 
 $app->register(new Silex\Provider\ServiceControllerServiceProvider());
+
+
+$app->register(
+    'app.image_type_extension',
+    'VeryGoodTrip\Form\Extension\ImageTypeExtension'
+);
+$app->addTag('form.type_extension', array('extended_type' => 'Symfony\Component\Form\Extension\Core\Type\FileType'));
+
 
 // Register services
 $app['dao.category'] = $app->share(function ($app) {

@@ -33,7 +33,7 @@ $app->match('/addcart/{id}', "VeryGoodTrip\Controller\HomeController::addCartAct
  ****                                                           ****
  *******************************************************************/
 // Trip management
-$app->get('/admin/trip', "VeryGoodTrip\Controller\AdminController::indexAction")->bind('admin_trip');
+$app->get('/admin/trip', "VeryGoodTrip\Controller\AdminController::indexTripAction")->bind('admin_trip');
 
 // Edit an existing article
 $app->match('/admin/trip/{id}/edit', "VeryGoodTrip\Controller\AdminController::editTripAction")->bind('admin_trip_edit');
@@ -43,6 +43,20 @@ $app->match('/admin/trip/add', "VeryGoodTrip\Controller\AdminController::addTrip
 
 // Remove an article
 $app->get('/admin/trip/{id}/delete', "VeryGoodTrip\Controller\AdminController::deleteTripAction")->bind('admin_trip_delete');
+
+
+
+// Category management
+$app->get('/admin/category', "VeryGoodTrip\Controller\AdminController::indexCategoryAction")->bind('admin_category');
+
+// Edit an existing article
+$app->match('/admin/category/{id}/edit', "VeryGoodTrip\Controller\AdminController::editCategoryAction")->bind('admin_category_edit');
+
+// Add a new trip
+$app->match('/admin/category/add', "VeryGoodTrip\Controller\AdminController::addCategoryAction")->bind('admin_category_add');
+
+// Remove an article
+$app->get('/admin/category/{id}/delete', "VeryGoodTrip\Controller\AdminController::deleteCategoryAction")->bind('admin_category_delete');
 
 
 /**

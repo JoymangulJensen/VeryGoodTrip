@@ -9,9 +9,10 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use VeryGoodTrip\Domain\Trip;
+use VeryGoodTrip\Domain\Category;
 use VeryGoodTrip\Domain\User;
 use VeryGoodTrip\Form\Type\TripType;
-use VeryGoodTrip\Form\Type\CommentType;
+use VeryGoodTrip\Form\Type\CategoryType;
 use VeryGoodTrip\Form\Type\UserType;
 
 class AdminController
@@ -22,7 +23,7 @@ class AdminController
      *
      * @param Application $app Silex application
      */
-    public function indexAction(Application $app)
+    public function indexTripAction(Application $app)
     {
         $trips = $app['dao.trip']->findAll();
         return $app['twig']->render('admin_trip.html.twig', array(
@@ -107,7 +108,92 @@ class AdminController
         return $app->redirect($app['url_generator']->generate('admin_trip'));
     }
 
+    /**
+     * Admin category management page controller.
+     * @param Application $app Silex application
+     */
+    public function indexCategoryAction(Application $app)
+    {
+        $categories = $app['dao.category']->findAll();
+        return $app['twig']->render('admin_category.html.twig', array(
+            'categories' => $categories));
+    }
 
+    /**
+     * Add category controller.
+     *
+     * @param Request $request Incoming request
+     * @param Application $app Silex application
+     */
+    public function addCategoryAction(Request $request, Application $app)
+    {
+        $category = new Category();
+        $categoryForm = $app['form.factory']->create(new CategoryType(), $category);
+        $categoryForm->handleRequest($request);
+        if ($categoryForm->isSubmitted() && $categoryForm->isValid()) {
+            $files = $request->files->get($categoryForm->getName());
+            $path = __DIR__ . '/../../web/images/';
+            $filename = $files['image']->getClientOriginalName();
+            $files['image']->move($path, $filename);
+            $category->setImage('./images/' . $filename);
+            $app['dao.category']->save($category);
+
+            $app['session']->getFlashBag()->add('success', 'The category was successfully created.');
+        }
+        return $app['twig']->render('category_form.html.twig', array(
+            'title' => 'Ajouter une catégorie',
+            'categoryForm' => $categoryForm->createView()));
+    }
+
+
+    /**
+     * Edit category controller.
+     *
+     * @param integer $id Category id
+     *
+     * @param Request $request Incoming request
+     * @param Application $app Silex application
+     */
+    public function editCategoryAction($id, Request $request, Application $app)
+    {
+        $category = $app['dao.category']->find($id);
+        $categoryForm = $app['form.factory']->create(new CategoryType(), $category);
+        $temp = $category;
+        $categoryForm->handleRequest($request);
+        if ($categoryForm->isSubmitted() && $categoryForm->isValid()) {
+            $files = $request->files->get($categoryForm->getName());
+            if ($files['image'] != null) {
+                $path = __DIR__ . '/../../web/images/';
+                $filename = $files['image']->getClientOriginalName();
+                $files['image']->move($path, $filename);
+                $category->setImage('./images/' . $filename);
+            } else {
+                $category->setImage($temp->getImage());
+            }
+            $app['dao.category']->save($category);
+            $app['session']->getFlashBag()->add('success', 'The article was succesfully updated.');
+        }
+        return $app['twig']->render('category_form.html.twig', array(
+            'title' => 'Modifier un séjour',
+            'categoryForm' => $categoryForm->createView()));
+    }
+
+    /**
+     * Delete category controller.
+     *
+     * @param integer $id Category id
+     * @param Application $app Silex application
+     */
+    public function deleteCategoryAction($id, Application $app)
+    {
+        //Delete all trips associated with the category
+        $app['dao.trip']->deleteAllByCategory($id);
+        // Delete the trip
+        $app['dao.category']->delete($id);
+        $app['session']->getFlashBag()->add('success', 'The category was succesfully removed.');
+        // Redirect to admin home page
+        return $app->redirect($app['url_generator']->generate('admin_category'));
+    }
 
 
 

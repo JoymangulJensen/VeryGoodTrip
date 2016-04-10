@@ -73,6 +73,42 @@ class CategoryDAO extends DAO
     }
 
     /**
+     * Saves a trip into the database
+     *
+     * @param \VeryGoodTrip\Domain\Category $article The article to save
+     */
+    public function save(Category $category) {
+        $categoryData = array(
+            'category_id' => $category->getId(),
+            'category_name' => $category->getName(),
+            'category_description' => $category->getDescription(),
+            'category_image' => $category->getImage()
+        );
+
+        if ($category->getId()) {
+            // The article has already been saved : update it
+            $this->getDb()->update('category', $categoryData, array('category_id' => $category->getId()));
+        } else {
+            // The article has never been saved : insert it
+            $this->getDb()->insert('category', $categoryData);
+            // Get the id of the newly created article and set it on the entity.
+            $id = $this->getDb()->lastInsertId();
+            $category->setId($id);
+        }
+    }
+
+    /**
+     * Removes a category from the database.
+     *
+     * @param integer $id The category id.
+     */
+    public function delete($id) {
+        // Delete the trip
+        $this->getDb()->delete('category', array('category_id' => $id));
+    }
+
+
+    /**
      * Creates a Category object based on a DB row.
      *
      * @param array $row The DB row containing Category data.

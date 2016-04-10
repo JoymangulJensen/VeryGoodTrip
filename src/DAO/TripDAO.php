@@ -127,6 +127,15 @@ class TripDAO extends DAO
         }
     }
 
+
+    /**
+     * Removes all trips for a category
+     *
+     * @param $categoryId The id of the category
+     */
+    public function deleteAllByCategory($categoryId) {
+        $this->getDb()->delete('trip', array('category_id' => $categoryId));
+    }
     /**
      * Removes a trip from the database.
      *

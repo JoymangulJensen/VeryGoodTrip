@@ -57,6 +57,19 @@ class CartDAO extends DAO
         $cart->setId($id);
     }
 
+    /**
+     * Removes a trip from the database.
+     *
+     * @param $cart_id int the id of the row in cart to be removed
+     * @param $user_id int the id of the user logged in
+     * @throws \Doctrine\DBAL\Exception\InvalidArgumentException
+     * @internal param int $id The trip id.
+     */
+    public function delete($cart_id, $user_id) {
+        // Delete the trip
+        $this->getDb()->delete('cart', array('cart_id' => $cart_id, 'user_id' => $user_id));
+    }
+
 
 
     /**

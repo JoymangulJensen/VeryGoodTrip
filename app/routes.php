@@ -27,6 +27,8 @@ $app->match('/cart', "VeryGoodTrip\Controller\HomeController::cartAction")->bind
 // View all cart
 $app->match('/addcart/{id}', "VeryGoodTrip\Controller\HomeController::addCartAction")->bind('addcart');
 
+$app->match('/removecart/{id}', "VeryGoodTrip\Controller\HomeController::removeCartAction")->bind("removecart");
+
 /*******************************************************************
  ****                                                           ****
  ****                      Admin Zone                           ****
@@ -64,7 +66,7 @@ $app->get('/admin/category/{id}/delete', "VeryGoodTrip\Controller\AdminControlle
  */
 $app->get('/hashpwd', function() use ($app) {
     $rawPassword = 'admin';
-    $salt = '%qUgq3NAYfC1MKwrW?yevbE';
+    $salt = 'qUgq3NAYfC1MKwrW?yevbE';
     $encoder = $app['security.encoder.digest'];
     return $encoder->encodePassword($rawPassword, $salt);
 });

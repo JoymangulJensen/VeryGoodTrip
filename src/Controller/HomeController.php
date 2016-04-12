@@ -148,4 +148,20 @@ class HomeController {
 
         return $app->redirect('/cart');
     }
+
+    /**
+     * Remove a trip from the cart
+     * @param $id : the id of the cart item
+     * @param Request $request
+     * @param Application $app
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse
+     */
+    public function removeCartAction($id, Request $request, Application $app)
+    {
+        if ($app['security.authorization_checker']->isGranted('IS_AUTHENTICATED_FULLY')) {
+
+            $app['dao.cart']->delete($id, $app['user']->getId());
+        }
+        return $app->redirect('/cart');
+    }
 }

@@ -31,14 +31,14 @@
                                     <div class="modal-content">
                                         <div class="modal-header">
                                             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                                            <h4 class="modal-title" id="myModalLabel">Confirmation needed</h4>
+                                            <h4 class="modal-title" id="myModalLabel">Confirmation</h4>
                                         </div>
                                         <div class="modal-body">
-                                            Do you really want to delete this trip ?
+                                            Voulez vous supprimer se séjour ?
                                         </div>
                                         <div class="modal-footer">
-                                            <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-                                            <a href="{{ path('admin_trip_delete', { 'id': trip.id }) }}" class="btn btn-danger">Confirm</a>
+                                            <button type="button" class="btn btn-default" data-dismiss="modal">Annuler</button>
+                                            <a href="{{ path('admin_trip_delete', { 'id': trip.id }) }}" class="btn btn-danger">Confirmer</a>
                                         </div>
                                     </div><!-- /.modal-content -->
                                 </div><!-- /.modal-dialog -->

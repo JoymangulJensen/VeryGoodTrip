@@ -22,7 +22,7 @@
                         <div class="form-group has-feedback has-feedback-left">
                             <div class="col-md-10 col-xs-10 col-md-offset-1 col-xs-offset-1">
                                 <input type="text" name="_username" value="{{ last_username }}"
-                                       class="form-control input-lg" placeholder="Enter your username" required
+                                       class="form-control input-lg" placeholder="Entrez votre courriel" required
                                        autofocus>
                                 <i class="glyphicon glyphicon-user form-control-feedback"></i>
                             </div>
@@ -31,7 +31,7 @@
                         <div class="form-group has-feedback has-feedback-left">
                             <div class="col-md-10 col-xs-10 col-md-offset-1 col-xs-offset-1">
                                 <input type="password" name="_password" class="form-control input-lg"
-                                       placeholder="Enter your password" required>
+                                       placeholder="Entrez votre Mot de Passe" required>
                                 <i class="glyphicon glyphicon-lock form-control-feedback"></i>
                             </div>
                         </div>
@@ -42,19 +42,13 @@
                                 Sign in
                             </button>
                         </div>
-                        <div class="col-md-10 col-xs-10 col-md-offset-1 col-xs-offset-1">
-                            <label class="checkbox pull-left">
-                                <input type="checkbox" value="remember-me">
-                                Remember me
-                            </label>
-                        </div>
 
                         <span class="clearfix"></span>
                     </form>
                 </div>
                 <br/>
                 <div class="col-md-12" style="text-align:center">
-                    <a href="{{ path('signin') }}">Create an account </a>
+                    <a href="{{ path('signin') }}">Créer un compte</a>
                 </div>
             </div>
         </div>

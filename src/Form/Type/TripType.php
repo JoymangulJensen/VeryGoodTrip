@@ -31,12 +31,12 @@ class TripType extends AbstractType
         }
 
         $builder
-            ->add('name', 'text')
+            ->add('name', 'text', array('label' => "Nom"))
             ->add('description', 'textarea')
-            ->add('price', 'integer', array('max_length' => 15))
+            ->add('price', 'integer', array('label' => "Prix",'max_length' => 4))
             //Build combobox containing all categories
             ->add('category', 'choice', array(
-                'label' => "Category",
+                'label' => "Categorie",
                 'choices' => $choices,
                 'choices_as_values' => true, // Future valeur par défaut dans Symfony 3.x
                 'choice_value' => function ($choice) {

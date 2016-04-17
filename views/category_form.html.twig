@@ -27,11 +27,13 @@
 
         <div class="form-group">
             {{ form_label(categoryForm.description, null, { 'label_attr':  {
+
                 'class': 'col-sm-4 control-label'
             }}) }}
             <div class="col-sm-6">
                 {{ form_errors(categoryForm.description) }}
                 {{ form_widget(categoryForm.description, { 'attr':  {
+                    'rows': '10',
                     'class': 'form-control'
                 }}) }}
             </div>

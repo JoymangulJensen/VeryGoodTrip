@@ -31,18 +31,18 @@
                                 <span class="glyphicon glyphicon-user"></span> Bonjour, {{ app.user.firstname }} <b
                                         class="caret"></b></a>
                             <ul class="dropdown-menu">
-                                <li><a href="{{ path('cart') }}"><span class="glyphicon glyphicon-shopping-cart"></span> View Cart</a></li>
-                                <li><a href="{{ path('user_edit', { 'id': app.user.id }) }}"><span class="glyphicon glyphicon-edit"></span> Edit Info</a></li>
-                                <li><a href="{{ path('logout') }}"><span class="glyphicon glyphicon-log-out"></span> Log out</a></li>
+                                <li><a href="{{ path('cart') }}"><span class="glyphicon glyphicon-shopping-cart"></span> Voir mon Panier</a></li>
+                                <li><a href="{{ path('user_edit', { 'id': app.user.id }) }}"><span class="glyphicon glyphicon-edit"></span> Modifier mes Informations</a></li>
+                                <li><a href="{{ path('logout') }}"><span class="glyphicon glyphicon-log-out"></span> Deconnexion</a></li>
                             </ul>
                         </li>
                     {% else %}
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                <span class="glyphicon glyphicon-user"></span> Not connected <b class="caret"></b></a>
+                                <span class="glyphicon glyphicon-user"></span> Non connecter <b class="caret"></b></a>
                             <ul class="dropdown-menu">
-                                <li><a href="{{ path('login') }}">Log in</a></li>
-                                <li><a href="{{ path('signin') }}">Create an account</a></li>
+                                <li><a href="{{ path('login') }}">Connecter</a></li>
+                                <li><a href="{{ path('signin') }}">Créer un compte</a></li>
                             </ul>
                         </li>
                     {% endif %}

@@ -110,12 +110,12 @@ class HomeController {
             // Salt the password of the user
             $user->setPassword($encoder->encodePassword($user->getPassword(), $salt));
             $app['dao.user']->save($user);
-            $app['session']->getFlashBag()->add('success', 'Your account has been successfully created');
+            $app['session']->getFlashBag()->add('success', 'Votre compte a bien été crée');
         }
         $userFormView = $userForm->createView();
 
         return $app['twig']->render('user_form.html.twig', array(
-            "title" => "Sign In",
+            "title" => "Créer un compte",
             "userForm" => $userFormView
         ));
     }
@@ -139,7 +139,7 @@ class HomeController {
             $password = $encoder->encodePassword($plainPassword, $user->getSalt());
             $user->setPassword($password);
             $app['dao.user']->save($user);
-            $app['session']->getFlashBag()->add('success', 'The user was succesfully updated.');
+            $app['session']->getFlashBag()->add('success', 'Mise à jour des informations réussies');
         }
         return $app['twig']->render('user_form.html.twig', array(
             'title' => 'Edit user',

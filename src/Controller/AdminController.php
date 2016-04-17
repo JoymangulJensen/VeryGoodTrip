@@ -69,7 +69,7 @@ class AdminController
     {
         $categories = $app['dao.category']->findAll();
         $trip = $app['dao.trip']->find($id);
-        $temp = $trip;
+        $temp = $trip->getImage();
         $tripForm = $app['form.factory']->create(new TripType($categories), $trip);
 
         $tripForm->handleRequest($request);
@@ -82,10 +82,9 @@ class AdminController
                 $trip->setImage('./images/' . $filename);
                 $app['dao.trip']->save($trip);
             } else {
-                $trip->setImage($temp->getImage());
+                $trip->setImage($temp);
+                $app['dao.trip']->save($trip);
             }
-
-
             $app['session']->getFlashBag()->add('success', 'The article was succesfully updated.');
         }
         return $app['twig']->render('trip_form.html.twig', array(

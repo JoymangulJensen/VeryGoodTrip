@@ -2,6 +2,8 @@
 
 namespace VeryGoodTrip\Controller;
 
+use VeryGoodTrip\Domain\Review;
+use VeryGoodTrip\Form\Type\ReviewType;
 use VeryGoodTrip\Form\Type\UserType;
 use Silex\Application;
 use Symfony\Component\HttpFoundation\Request;
@@ -33,7 +35,32 @@ class HomeController {
      */
     public function tripAction($id, Request $request, Application $app) {
         $trip = $app['dao.trip']->find($id);
-        return $app['twig']->render('trip.html.twig', array('trip' => $trip));
+
+
+        $reviewFormView = null;
+        if ($app['security.authorization_checker']->isGranted('IS_AUTHENTICATED_FULLY')) {
+            // A user is fully authenticated : he can add comments
+            $review = new Review();
+            $review->setTrip($trip);
+            $user = $app['user'];
+            $review->setUser($user);
+            $reviewForm = $app['form.factory']->create(new ReviewType(), $review);
+            $reviewForm->handleRequest($request);
+            if ($reviewForm->isSubmitted() && $reviewForm->isValid()) {
+                $app['dao.review']->save($review);
+                $app['session']->getFlashBag()->add('success', 'Your review was succesfully added.');
+            }
+            $reviewFormView = $reviewForm->createView();
+        }
+        $reviews = $app['dao.review']->findAllByTrip($id);
+
+
+
+        return $app['twig']->render('trip.html.twig', array(
+            'trip' => $trip,
+            'reviews' => $reviews,
+            'reviewForm' => $reviewFormView
+        ));
     }
 
     /**

@@ -31,4 +31,44 @@
             <a href="{{ path('addcart', { 'id': trip.id}) }}" class="btn btn-info active">Ajouter au Panier<i class="glyphicon glyphicon-shopping-cart"></i></a>
         </div>
     </div>
+
+
+
+    <h3>Comments</h3>
+    {% for review in reviews %}
+        <strong>{{ review.user.username }}</strong> said : {{ review.content }}<br>
+    {% else %}
+        No comments yet.
+    {% endfor %}
+
+    <h3>Add a comment</h3>
+    {% if reviewForm %}
+        {{ form_start(reviewForm) }}
+        <div class="form-group">
+            {{ form_errors(reviewForm.content) }}
+            {{ form_widget(reviewForm.content, { 'attr':  {
+                'rows': '4',
+                'class': 'form-control',
+                'placeholder': 'Enter your comment'
+            }}) }}
+        </div>
+        <div class="col-sm-6">
+            {{ form_errors(reviewForm.rating) }}
+            {{ form_widget(reviewForm.rating, { 'attr':  {
+                'class': 'form-control'
+            }}) }}
+        </div>
+        <div class="form-group">
+            <input type="submit" class="btn btn-primary" value="Publish comment" />
+        </div>
+        {{ form_end(reviewForm) }}
+
+        {% for flashMessage in app.session.flashbag.get('success') %}
+            <div class="alert alert-success">
+                {{ flashMessage }}
+            </div>
+        {% endfor %}
+    {% else %}
+        <a href="{{ path('login') }} ">Log in</a> to add comments.
+    {% endif %}
 {% endblock %}

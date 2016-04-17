@@ -65,6 +65,14 @@ $app['dao.cart'] = $app->share(function ($app)
     return $cartDAO;
 });
 
+$app['dao.review'] = $app->share(function ($app)
+{
+    $reviewDAO = new VeryGoodTrip\DAO\ReviewDAO($app['db']);
+    $reviewDAO->setTripDAO($app['dao.trip']);
+    $reviewDAO->setUserDAO($app['dao.user']);
+    return $reviewDAO;
+});
+
 // Register error handler
 /*$app->error(function (\Exception $e, $code) use ($app) {
     switch ($code) {

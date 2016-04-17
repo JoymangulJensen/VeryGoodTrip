@@ -128,6 +128,7 @@ class TripDAO extends DAO
     }
 
 
+
     /**
      * Removes all trips for a category
      *

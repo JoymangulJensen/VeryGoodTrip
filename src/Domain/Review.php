@@ -6,6 +6,11 @@ namespace VeryGoodTrip\Domain;
 class Review
 {
     /**
+     * The id of review
+     * @var Integer
+     */
+    private $id;
+    /**
      * The concerning trip
      * @var \VeryGoodTrip\Domain\Trip
      */
@@ -22,15 +27,31 @@ class Review
     private $content;
     /**
      * Rating of the trip
-     * values : [1 - 10]
+     * values : [1 - 5]
      * @var integer
      */
     private $rating;
 
 
+
     /*************************************************************
      *************       Getters and setters         *************
      *************************************************************/
+    /**
+     * @return int
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * @param int $id
+     */
+    public function setId($id)
+    {
+        $this->id = $id;
+    }
     /**
      * @return Trip
      */

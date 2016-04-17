@@ -1,6 +1,5 @@
 <?php
 
-
 namespace VeryGoodTrip\Domain;
 
 use Symfony\Component\Security\Core\User\UserInterface;

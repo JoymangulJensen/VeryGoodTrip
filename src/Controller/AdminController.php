@@ -6,10 +6,8 @@ use Silex\Application;
 use Symfony\Component\HttpFoundation\Request;
 use VeryGoodTrip\Domain\Trip;
 use VeryGoodTrip\Domain\Category;
-use VeryGoodTrip\Domain\User;
 use VeryGoodTrip\Form\Type\TripType;
 use VeryGoodTrip\Form\Type\CategoryType;
-use VeryGoodTrip\Form\Type\UserType;
 
 class AdminController
 {
@@ -65,20 +63,22 @@ class AdminController
     {
         $categories = $app['dao.category']->findAll();
         $trip = $app['dao.trip']->find($id);
-        $temp = $trip->getImage();
+        //Store the image of current in case user does not modify the current image
+        $tempimg = $trip->getImage();
         $tripForm = $app['form.factory']->create(new TripType($categories), $trip);
 
         $tripForm->handleRequest($request);
         if ($tripForm->isSubmitted() && $tripForm->isValid()) {
             $files = $request->files->get($tripForm->getName());
-            if ($files['image'] != null) {
+            if ($files['image'] != null) //if the user modifies the current image
+            {
                 $path = __DIR__ . '/../../web/images/';
                 $filename = $files['image']->getClientOriginalName();
                 $files['image']->move($path, $filename);
                 $trip->setImage('./images/' . $filename);
                 $app['dao.trip']->save($trip);
             } else {
-                $trip->setImage($temp);
+                $trip->setImage($tempimg);
                 $app['dao.trip']->save($trip);
             }
             $app['session']->getFlashBag()->add('success', 'Mise à jour réussie');
@@ -153,7 +153,7 @@ class AdminController
     {
         $category = $app['dao.category']->find($id);
         $categoryForm = $app['form.factory']->create(new CategoryType(), $category);
-        $temp = $category;
+        $tempimg = $category->getImage();
         $categoryForm->handleRequest($request);
         if ($categoryForm->isSubmitted() && $categoryForm->isValid()) {
             $files = $request->files->get($categoryForm->getName());
@@ -163,7 +163,7 @@ class AdminController
                 $files['image']->move($path, $filename);
                 $category->setImage('./images/' . $filename);
             } else {
-                $category->setImage($temp->getImage());
+                $category->setImage($tempimg);
             }
             $app['dao.category']->save($category);
             $app['session']->getFlashBag()->add('success', 'Mise à jour réussie');

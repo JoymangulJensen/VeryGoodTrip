@@ -1,6 +1,5 @@
 <?php
 
-
 namespace VeryGoodTrip\DAO;
 
 use Doctrine\DBAL\Connection;

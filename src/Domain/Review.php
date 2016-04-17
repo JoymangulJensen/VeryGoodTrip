@@ -2,7 +2,6 @@
 
 namespace VeryGoodTrip\Domain;
 
-
 class Review
 {
     /**

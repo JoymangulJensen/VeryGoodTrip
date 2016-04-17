@@ -11,7 +11,7 @@
         <div class="useravatar">
             <img src="{{ app.request.basepath }}/{{ trip.image }}" alt="Smiley face" id="trip_img">
         </div>
-        <div class="card-info"> <span class="card-title">{{ trip.name }}</span>
+        <div class="card-info"><span class="card-title">{{ trip.name }}</span>
 
         </div>
     </div>
@@ -23,12 +23,13 @@
             <h3 class="pull-right">{{ trip.price }} €</h3>
             <h3>{{ trip.name }}</h3>
             <p>{{ trip.description }}</p>
-            <p>{{  trip.category.name }}</p>
+            <p>{{ trip.category.name }}</p>
         </div>
         <div class="col-md-2 col-md-offset-1 col-sm-2 col-sm-offset-1">
             <br/>
             <br/>
-            <a href="{{ path('addcart', { 'id': trip.id}) }}" class="btn btn-info active">Ajouter au Panier<i class="glyphicon glyphicon-shopping-cart"></i></a>
+            <a href="{{ path('addcart', { 'id': trip.id}) }}" class="btn btn-info active">Ajouter au Panier<i
+                        class="glyphicon glyphicon-shopping-cart"></i></a>
         </div>
     </div>
 
@@ -36,30 +37,49 @@
 
     <h3>Comments</h3>
     {% for review in reviews %}
-        <strong>{{ review.user.username }}</strong> said : {{ review.content }}<br>
+        <div class="row">
+            <div class="col-md-2 col-md-offset-2 col-sm-2 col-sm-offset-2"
+                 style="text-align: center;background-color: lightgray;border-radius: 10px;">
+                <h4>{{ review.user.username }}</h4>
+                <h5>{{ review.user.lastname }} {{ review.user.firstname }}</h5>
+                <h6>{{ review.user.town }} {{ review.user.zipcode }}</h6>
+            </div>
+            <div class="col-md-6 col-sm-6 ">
+                <h5>{{ review.content }}<br></h5>
+                <h4><strong>Notation : </strong>{{ review.rating }} / 5</h4>
+            </div>
+            <br><br><br><br><br>
+        </div>
     {% else %}
         No comments yet.
     {% endfor %}
 
     <h3>Add a comment</h3>
+    <div class="row">
     {% if reviewForm %}
         {{ form_start(reviewForm) }}
         <div class="form-group">
-            {{ form_errors(reviewForm.content) }}
-            {{ form_widget(reviewForm.content, { 'attr':  {
-                'rows': '4',
-                'class': 'form-control',
-                'placeholder': 'Enter your comment'
-            }}) }}
+            <div class="col-md-8 col-md-offset-2 col-sm-8 col-sm-offset-2">
+                {{ form_errors(reviewForm.content) }}
+                {{ form_widget(reviewForm.content, { 'attr':  {
+                    'rows': '4',
+                    'class': 'form-control',
+                    'placeholder': 'Enter your comment'
+                }}) }}
+            </div>
         </div>
-        <div class="col-sm-6">
-            {{ form_errors(reviewForm.rating) }}
-            {{ form_widget(reviewForm.rating, { 'attr':  {
-                'class': 'form-control'
-            }}) }}
+        <div class="form-group 2">
+            <div class="col-md-8 col-md-offset-2 col-sm-8 col-sm-offset-2">
+                {{ form_errors(reviewForm.rating) }}
+                <h4>Notation : </h4>
+                {{ form_widget(reviewForm.rating, { 'attr':  {
+                    'class': 'form-control'
+                }}) }}
+            </div>
         </div>
         <div class="form-group">
-            <input type="submit" class="btn btn-primary" value="Publish comment" />
+
+            <input type="submit" class="btn btn-primary" value="Ajouter la critique"/>
         </div>
         {{ form_end(reviewForm) }}
 
@@ -71,4 +91,8 @@
     {% else %}
         <a href="{{ path('login') }} ">Log in</a> to add comments.
     {% endif %}
+    </div>
+    <br>
+    <br>
+
 {% endblock %}

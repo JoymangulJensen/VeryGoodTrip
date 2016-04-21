@@ -30,7 +30,14 @@ class ReviewDAO extends DAO
     {
         $this->userDAO = $userDAO;
     }
-    
+
+    /**
+     * Find all the reviews matching the given trip
+     *
+     * @param $tripId integer the trip id
+     * @return array Review[] the reviews matching the given trip
+     * @throws \Exception
+     */
     public function findAllByTrip($tripId)
     {
         // The associated trip is retrieved only once
@@ -64,19 +71,19 @@ class ReviewDAO extends DAO
         );
 
         if ($review->getId()) {
-            // The comment has already been saved : update it
+            // The review has already been saved : update it
             $this->getDb()->update('review', $reviewDate, array('review_id' => $review->getId()));
         } else {
-            // The comment has never been saved : insert it
+            // The review has never been saved : insert it
             $this->getDb()->insert('review', $reviewDate);
-            // Get the id of the newly created comment and set it on the entity.
+            // Get the id of the newly created review and set it on the entity.
             $id = $this->getDb()->lastInsertId();
             $review->setId($id);
         }
     }
 
     /**
-     * Creates an Review object based on a DB row.
+     * Creates a Review object based on a DB row.
      *
      * @param array $row The DB row containing Review data.
      * @return \VeryGoodTrip\Domain\Review

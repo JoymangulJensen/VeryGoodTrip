@@ -13,6 +13,7 @@ class TripDAO extends DAO
 
     /**
      * Set the categoryDAO object
+     *
      * @param CategoryDAO $categoryDAO
      */
     public function setCategoryDAO(CategoryDAO $categoryDAO) {
@@ -21,6 +22,7 @@ class TripDAO extends DAO
 
     /**
      * Returns a list of all trips sorted by date(most recent first)
+     *
      * @return trips[] An array of \VeryGoodTrip\Domain\Trip
      */
     public function findAll()
@@ -39,7 +41,8 @@ class TripDAO extends DAO
 
     /**
      * Returns a random list of trips, the number of trips is entered as parameter
-     * @param $nbtrips Integer : Number of trips
+     *
+     * @param $nbtrips Integer : Number of trips wanted
      * @return trips[] An array of \VeryGoodTime\Domain\Trip
      */
     public function findRandom($nbtrips)
@@ -59,6 +62,7 @@ class TripDAO extends DAO
 
     /**
      * Returns a trip matching the supplied id.
+     *
      * @param integer $id
      * @return Trip
      * @throws \Exception
@@ -77,8 +81,7 @@ class TripDAO extends DAO
     /**
      * Return a list of all trips for a category.
      *
-     * @param integer $categoryId The Category id.
-     *
+     * @param integer $categoryId The Category id.     *
      * @return array A list of all trips for the category.
      */
     public function findAllByCategory($categoryId)
@@ -103,7 +106,7 @@ class TripDAO extends DAO
     /**
      * Saves a trip into the database
      *
-     * @param \VeryGoodTrip\Domain\Article $article The article to save
+     * @param \VeryGoodTrip\Domain\Trip $trip the trip to save
      */
     public function save(Trip $trip) {
         $tripData = array(
@@ -116,12 +119,9 @@ class TripDAO extends DAO
         );
 
         if ($trip->getId()) {
-            // The article has already been saved : update it
             $this->getDb()->update('trip', $tripData, array('trip_id' => $trip->getId()));
         } else {
-            // The article has never been saved : insert it
             $this->getDb()->insert('trip', $tripData);
-            // Get the id of the newly created article and set it on the entity.
             $id = $this->getDb()->lastInsertId();
             $trip->setId($id);
         }
@@ -137,6 +137,7 @@ class TripDAO extends DAO
     public function deleteAllByCategory($categoryId) {
         $this->getDb()->delete('trip', array('category_id' => $categoryId));
     }
+
     /**
      * Removes a trip from the database.
      *
@@ -159,7 +160,7 @@ class TripDAO extends DAO
         $trip->setName($row['trip_name']);
         $trip->setDescription($row['trip_description']);
         $trip->setPrice($row['trip_price']);
-        //find the category of the tri and category a Category
+        //find the category of the trip
         $category = $this->categoryDAO->find($row['category_id']);
         $trip->setCategory($category);
         $trip->setImage($row['trip_image']);

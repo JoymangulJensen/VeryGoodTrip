@@ -6,9 +6,9 @@ use VeryGoodTrip\Domain\Category;
 class CategoryDAO extends DAO
 {
     /**
-     * Return a list of all Categories, sorted by date (most recent first).
+     * Returns a list of all Categories, sorted by date (most recent first).
      *
-     * @return array C list of all categories.
+     * @return array Category[] list of all categories.
      */
     public function findAll() {
         $sql = "select * from category order by category_id desc";
@@ -25,6 +25,7 @@ class CategoryDAO extends DAO
 
     /**
      * Returns a random list of images, the number is entered as parameter
+     *
      * @param $nbImages Integer : Number of images
      * @return string[] An array of url of images
      */
@@ -43,9 +44,9 @@ class CategoryDAO extends DAO
     }
 
     /**
-     * Return a list of all Categories, sorted by date (most recent first).
+     * Return a list of all Categories
      *
-     * @return array C list of all categories.
+     * @return array Category[] list of all categories.
      */
     public function findAllWithCount() {
         $sql = "select category.*, count(trip.trip_id) as nb_trips from category left join trip on trip.category_id =
@@ -60,15 +61,14 @@ class CategoryDAO extends DAO
             $category->setNbtrips($row['nb_trips']);
 
             $categories[$categoryId] = $category;
-            // $categories[$categoryId]->setNbtrips(3);
         }
         return $categories;
     }
 
     /**
-     * Saves a trip into the database
+     * Saves a category into the database
      *
-     * @param \VeryGoodTrip\Domain\Category $article The article to save
+     * @param \VeryGoodTrip\Domain\Category $category The category to save
      */
     public function save(Category $category) {
         $categoryData = array(
@@ -79,12 +79,10 @@ class CategoryDAO extends DAO
         );
 
         if ($category->getId()) {
-            // The article has already been saved : update it
             $this->getDb()->update('category', $categoryData, array('category_id' => $category->getId()));
         } else {
-            // The article has never been saved : insert it
             $this->getDb()->insert('category', $categoryData);
-            // Get the id of the newly created article and set it on the entity.
+            // Get the id of the newly created category and set it on the entity.
             $id = $this->getDb()->lastInsertId();
             $category->setId($id);
         }
@@ -96,7 +94,6 @@ class CategoryDAO extends DAO
      * @param integer $id The category id.
      */
     public function delete($id) {
-        // Delete the trip
         $this->getDb()->delete('category', array('category_id' => $id));
     }
 

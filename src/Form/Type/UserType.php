@@ -16,7 +16,7 @@ class UserType extends AbstractType
     {
         $builder
             ->add('email', 'text', array(
-                'label' => "Courriel",
+                'label' => "Email",
                 'constraints' => new Assert\Email(),
                 'attr' => array(
                     'placeholder' => 'i.e: john@doe.com',
@@ -28,15 +28,15 @@ class UserType extends AbstractType
                 'label' => "Nom",
                 'constraints' => array(new Assert\NotBlank()),
                 ))
-            ->add('address', 'textarea')
+            ->add('address', 'textarea', array('label' => 'Adresse'))
             ->add('town', 'text', array('label' => "Ville"))
-            ->add('zipcode', 'integer',  array('label' => "Code Postale"))
+            ->add('zipcode', 'integer',  array('label' => "Code Postal"))
             ->add('password', 'repeated', array(
                 'type'            => 'password',
-                'invalid_message' => 'The password fields must match.',
+                'invalid_message' => 'Les mots de passes doivent être les mêmes. ',
                 'options'         => array('required' => true),
                 'first_options'   => array('label' => 'Mot de Passe'),
-                'second_options'  => array('label' => 'Ré-écrire Mot de Passe'),
+                'second_options'  => array('label' => 'Confirmation du Mot de Passe'),
             ))
             ;
     }

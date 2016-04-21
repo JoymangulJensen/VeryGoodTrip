@@ -64,7 +64,7 @@
                 {{ form_widget(reviewForm.content, { 'attr':  {
                     'rows': '4',
                     'class': 'form-control',
-                    'placeholder': 'Enter your comment'
+                    'placeholder': 'Commentaire'
                 }}) }}
             </div>
         </div>
@@ -89,7 +89,7 @@
             </div>
         {% endfor %}
     {% else %}
-        <a href="{{ path('login') }} ">Log in</a> to add comments.
+        <a href="{{ path('login') }} ">Connectez-vous</a> pour ajouter un commentaire.
     {% endif %}
     </div>
     <br>

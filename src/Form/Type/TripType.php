@@ -33,31 +33,26 @@ class TripType extends AbstractType
         $builder
             ->add('name', 'text', array('label' => "Nom"))
             ->add('description', 'textarea')
-            ->add('price', 'integer', array('label' => "Prix",'max_length' => 4))
-            //Build combobox containing all categories
+            ->add('price', 'integer', array('label' => "Prix", 'max_length' => 4))
+            // Build combo box containing all categories
             ->add('category', 'choice', array(
-                'label' => "Categorie",
-                'choices' => $choices,
-                'choices_as_values' => true, // Future valeur par défaut dans Symfony 3.x
-                'choice_value' => function ($choice) {
-                    return $choice;
-                },
-                'expanded' => false,
-                'multiple' => false,
-                'mapped' => true,  // ce champ n'est pas mis en correspondance avec la propriété de l'objet
-            )
-
-
+                    'label' => "Catégorie",
+                    'choices' => $choices,
+                    'choices_as_values' => true,
+                    'choice_value' => function ($choice) {
+                        return $choice;
+                    },
+                    'expanded' => false,
+                    'multiple' => false,
+                    'mapped' => true,  // This field is not matching with the object property
+                )
             )
             ->add('image', 'file', array(
                     'required' => false,
                     'data_class' => null
                 )
             );
-
-
     }
-
 
     public function getName()
     {

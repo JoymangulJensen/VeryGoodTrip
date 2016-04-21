@@ -200,7 +200,8 @@ class User implements UserInterface
      */
     public function eraseCredentials()
     {
-        // TODO: Implement eraseCredentials() method.
+        // $this->get('security.context')->setToken(null);
+        // $this->get('request')->getSession()->invalidate();
     }
 
 

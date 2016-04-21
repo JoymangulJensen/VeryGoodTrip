@@ -48,8 +48,7 @@ class UserDAO extends DAO implements UserProviderInterface
             'user_zipcode' => $user->getZipcode()
         );
 
-        if ($user->getId()) { // Todo : change here to implement the update of an user profile
-            // The user has already been saved : update it
+        if ($user->getId()) {
             $this->getDb()->update('user', $userData, array('user_id' => $user->getId()));
         } else {
             // The user has never been saved : insert it
@@ -91,7 +90,7 @@ class UserDAO extends DAO implements UserProviderInterface
     /**
      * Returns a user matching the supplied email.
      *
-     * @param integer $username The email/username of user.
+     * @param integer $id The id of user.
      *
      * @return \VeryGoodTrip\Domain\User | throws an exception if no matching user is found
      */
@@ -106,7 +105,9 @@ class UserDAO extends DAO implements UserProviderInterface
     }
 
     /**
-     * {@inheritDoc}
+     * Find a user by the username
+     * @param string $username
+     * @return User
      */
     public function loadUserByUsername($username)
     {

@@ -44,6 +44,10 @@ class CartDAO extends DAO
         return $carts;
     }
 
+    /**
+     * Save the given cart in the database
+     * @param $cart Cart cart to be saved
+     */
     public function save($cart)
     {
         $cartData = array(

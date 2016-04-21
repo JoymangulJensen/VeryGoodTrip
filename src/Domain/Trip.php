@@ -134,8 +134,4 @@ class Trip
     {
         $this->image = $image;
     }
-
-
-
-
 }

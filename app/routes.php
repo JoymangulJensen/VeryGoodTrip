@@ -1,9 +1,6 @@
 <?php
 
 // Home page
-// $app->get('/', "VeryGoodTrip\Controller\HomeController::indexAction")->bind('home');
-
-
 $app->match('/', "VeryGoodTrip\Controller\HomeController::indexAction")->bind('home');
 // Detailed info about a trip
 $app->match('/trip/{id}', "VeryGoodTrip\Controller\HomeController::tripAction")->bind('trip');

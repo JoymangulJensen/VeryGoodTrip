@@ -10,6 +10,10 @@ use Symfony\Component\HttpFoundation\Request;
 use VeryGoodTrip\Domain\User;
 use VeryGoodTrip\Domain\Cart;
 
+/**
+ * Class HomeController : provides all the controllers managing the simple user side of the website
+ * @package VeryGoodTrip\Controller
+ */
 class HomeController {
 
     /**
@@ -29,14 +33,14 @@ class HomeController {
 
     /**
      * Trip details controller
+     *
      * @param integer $id Trip id
      * @param Request $request Incoming request
      * @param Application $app Silex application
+     * @return Application $app Silex application
      */
     public function tripAction($id, Request $request, Application $app) {
         $trip = $app['dao.trip']->find($id);
-
-
         $reviewFormView = null;
         if ($app['security.authorization_checker']->isGranted('IS_AUTHENTICATED_FULLY')) {
             // A user is fully authenticated : he can add comments
@@ -54,8 +58,6 @@ class HomeController {
         }
         $reviews = $app['dao.review']->findAllByTrip($id);
 
-
-
         return $app['twig']->render('trip.html.twig', array(
             'trip' => $trip,
             'reviews' => $reviews,
@@ -64,10 +66,12 @@ class HomeController {
     }
 
     /**
-     * @param $id
+     * Category details page
+     *
+     * @param $id the id of the category
      * @param Request $request
      * @param Application $app
-     * @return mixed
+     * @return Application silex Application
      */
     public function categoryAction($id, Request $request, Application $app) {
         $category = $app['dao.category']->find($id);
@@ -80,6 +84,7 @@ class HomeController {
      *
      * @param Request $request Incoming request
      * @param Application $app Silex application
+     * @return Application Silex application
      */
     public function loginAction(Request $request, Application $app) {
         return $app['twig']->render('login.html.twig', array(
@@ -126,6 +131,7 @@ class HomeController {
      * @param integer $id User id
      * @param Request $request Incoming request
      * @param Application $app Silex application
+     * @return Application Silex Application
      */
     public function editUserAction($id, Request $request, Application $app) {
         $user = $app['dao.user']->find($id);
@@ -146,6 +152,14 @@ class HomeController {
             'userForm' => $userForm->createView()));
     }
 
+    /**
+     * Manage the cart action
+     *
+     * @param Request $request
+     * @param Application $app
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse
+     * @return Application Silex Application
+     */
     public function cartAction(Request $request, Application $app)
     {
         $carts = Array();
@@ -162,6 +176,14 @@ class HomeController {
             'carts' => $carts,));
     }
 
+    /**
+     * Add an item into the cart of the authenticated used
+     *
+     * @param $id
+     * @param Request $request
+     * @param Application $app
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse towards the cart page
+     */
     public function addCartAction($id, Request $request, Application $app)
     {
         if ($app['security.authorization_checker']->isGranted('IS_AUTHENTICATED_FULLY')) {
@@ -178,10 +200,11 @@ class HomeController {
 
     /**
      * Remove a trip from the cart
+     *
      * @param $id : the id of the cart item
      * @param Request $request
      * @param Application $app
-     * @return \Symfony\Component\HttpFoundation\RedirectResponse
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse towards the cart page
      */
     public function removeCartAction($id, Request $request, Application $app)
     {

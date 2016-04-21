@@ -9,6 +9,10 @@ use VeryGoodTrip\Domain\Category;
 use VeryGoodTrip\Form\Type\TripType;
 use VeryGoodTrip\Form\Type\CategoryType;
 
+/**
+     * Class AdminController : provides all the controllers managing the administration side of the website
+ * @package VeryGoodTrip\Controller
+ */
 class AdminController
 {
 
@@ -93,6 +97,7 @@ class AdminController
      *
      * @param integer $id Trip id
      * @param Application $app Silex application
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse redirect toward admin_trip page
      */
     public function deleteTripAction($id, Application $app)
     {
@@ -106,6 +111,7 @@ class AdminController
     /**
      * Admin category management page controller.
      * @param Application $app Silex application
+     * @return Application $app Silex application
      */
     public function indexCategoryAction(Application $app)
     {
@@ -133,7 +139,7 @@ class AdminController
             $category->setImage('./images/' . $filename);
             $app['dao.category']->save($category);
 
-            $app['session']->getFlashBag()->add('success', 'la catégorie a bien été crée');
+            $app['session']->getFlashBag()->add('success', 'la catégorie a bien été créée');
         }
         return $app['twig']->render('category_form.html.twig', array(
             'title' => 'Ajouter une catégorie',
@@ -145,9 +151,9 @@ class AdminController
      * Edit category controller.
      *
      * @param integer $id Category id
-     *
      * @param Request $request Incoming request
-     * @param Application $app Silex application
+     * @param Application $app Silex Application
+     * @return Application $app Silex Application
      */
     public function editCategoryAction($id, Request $request, Application $app)
     {
@@ -178,6 +184,7 @@ class AdminController
      *
      * @param integer $id Category id
      * @param Application $app Silex application
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse Redirect toward the admin_category page
      */
     public function deleteCategoryAction($id, Application $app)
     {

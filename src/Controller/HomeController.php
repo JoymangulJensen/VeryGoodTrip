@@ -22,7 +22,7 @@ class HomeController {
      * @param Application $app Silex application
      */
     public function indexAction(Application $app) {
-        $trips = $app['dao.trip']->findRandom(2);
+        $trips = $app['dao.trip']->findRandom(3);
         $images = $app['dao.category']->findRandomImages(5);
         $categories = $app['dao.category']->findAllWithCount();
         return $app['twig']->render('index.html.twig', array(

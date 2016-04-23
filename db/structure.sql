@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Client :  localhost
--- Généré le :  Mar 01 Mars 2016 à 16:31
+-- Généré le :  Sam 23 Avril 2016 à 14:29
 -- Version du serveur :  5.6.17
 -- Version de PHP :  5.5.12
 
@@ -28,20 +28,8 @@ SET time_zone = "+00:00";
 
 CREATE TABLE IF NOT EXISTS `cart` (
   `cart_id` int(11) NOT NULL,
-  `date_created` date NOT NULL,
-  `user_email` varchar(100) COLLATE utf8_unicode_ci NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-
--- --------------------------------------------------------
-
---
--- Structure de la table `cart_trip`
---
-
-CREATE TABLE IF NOT EXISTS `cart_trip` (
-  `cart_trip_id` int(11) NOT NULL,
-  `cart_id` int(11) NOT NULL,
-  `trip_id` int(11) NOT NULL
+  `trip_id` int(11) NOT NULL,
+  `user_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- --------------------------------------------------------
@@ -64,8 +52,9 @@ CREATE TABLE IF NOT EXISTS `category` (
 --
 
 CREATE TABLE IF NOT EXISTS `review` (
+  `review_id` int(11) NOT NULL,
   `trip_id` int(11) NOT NULL,
-  `user_email` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
+  `user_id` int(11) NOT NULL,
   `review_content` varchar(2000) COLLATE utf8_unicode_ci NOT NULL,
   `review_rating` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
@@ -92,7 +81,8 @@ CREATE TABLE IF NOT EXISTS `trip` (
 --
 
 CREATE TABLE IF NOT EXISTS `user` (
-  `user_email` varchar(150) COLLATE utf8_unicode_ci NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `user_email` varchar(250) COLLATE utf8_unicode_ci NOT NULL,
   `user_lastname` varchar(200) COLLATE utf8_unicode_ci NOT NULL,
   `user_firstname` varchar(200) COLLATE utf8_unicode_ci DEFAULT NULL,
   `user_password` varchar(99) COLLATE utf8_unicode_ci NOT NULL,
@@ -112,15 +102,8 @@ CREATE TABLE IF NOT EXISTS `user` (
 --
 ALTER TABLE `cart`
   ADD PRIMARY KEY (`cart_id`),
-  ADD UNIQUE KEY `user_email` (`user_email`);
-
---
--- Index pour la table `cart_trip`
---
-ALTER TABLE `cart_trip`
-  ADD PRIMARY KEY (`cart_trip_id`),
   ADD KEY `fk_cart_trip` (`trip_id`),
-  ADD KEY `fk_cart_trip_2` (`cart_id`);
+  ADD KEY `user_id` (`user_id`);
 
 --
 -- Index pour la table `category`
@@ -132,8 +115,9 @@ ALTER TABLE `category`
 -- Index pour la table `review`
 --
 ALTER TABLE `review`
-  ADD PRIMARY KEY (`trip_id`,`user_email`),
-  ADD KEY `fk_review_user` (`user_email`);
+  ADD PRIMARY KEY (`review_id`),
+  ADD KEY `trip_id` (`trip_id`),
+  ADD KEY `user_id` (`user_id`);
 
 --
 -- Index pour la table `trip`
@@ -146,7 +130,7 @@ ALTER TABLE `trip`
 -- Index pour la table `user`
 --
 ALTER TABLE `user`
-  ADD PRIMARY KEY (`user_email`);
+  ADD PRIMARY KEY (`user_id`);
 
 --
 -- AUTO_INCREMENT pour les tables exportées
@@ -158,20 +142,25 @@ ALTER TABLE `user`
 ALTER TABLE `cart`
   MODIFY `cart_id` int(11) NOT NULL AUTO_INCREMENT;
 --
--- AUTO_INCREMENT pour la table `cart_trip`
---
-ALTER TABLE `cart_trip`
-  MODIFY `cart_trip_id` int(11) NOT NULL AUTO_INCREMENT;
---
 -- AUTO_INCREMENT pour la table `category`
 --
 ALTER TABLE `category`
   MODIFY `category_id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'Identifiant de la catégorie';
 --
+-- AUTO_INCREMENT pour la table `review`
+--
+ALTER TABLE `review`
+  MODIFY `review_id` int(11) NOT NULL AUTO_INCREMENT;
+--
 -- AUTO_INCREMENT pour la table `trip`
 --
 ALTER TABLE `trip`
   MODIFY `trip_id` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT pour la table `user`
+--
+ALTER TABLE `user`
+  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- Contraintes pour les tables exportées
 --
@@ -180,21 +169,15 @@ ALTER TABLE `trip`
 -- Contraintes pour la table `cart`
 --
 ALTER TABLE `cart`
-  ADD CONSTRAINT `fk_cart_user` FOREIGN KEY (`user_email`) REFERENCES `user` (`user_email`) ON DELETE CASCADE ON UPDATE CASCADE;
-
---
--- Contraintes pour la table `cart_trip`
---
-ALTER TABLE `cart_trip`
   ADD CONSTRAINT `fk_cart_trip` FOREIGN KEY (`trip_id`) REFERENCES `trip` (`trip_id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `fk_cart_trip_2` FOREIGN KEY (`cart_id`) REFERENCES `cart` (`cart_id`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `fk_cart_user` FOREIGN KEY (`user_id`) REFERENCES `user` (`user_id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Contraintes pour la table `review`
 --
 ALTER TABLE `review`
-  ADD CONSTRAINT `fk_review_trip` FOREIGN KEY (`trip_id`) REFERENCES `trip` (`trip_id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `fk_review_user` FOREIGN KEY (`user_email`) REFERENCES `user` (`user_email`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `review_ibfk_1` FOREIGN KEY (`trip_id`) REFERENCES `trip` (`trip_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `review_ibfk_2` FOREIGN KEY (`user_id`) REFERENCES `user` (`user_id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Contraintes pour la table `trip`
